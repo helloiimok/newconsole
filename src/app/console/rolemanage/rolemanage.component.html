@@ -1,0 +1,132 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-5">
+    <div class="ui-grid-row">
+      <p-panel header="机构树" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.roles selectionMode="single" [(selection)]="selRoles"
+                (onNodeExpand)="nodeExpand($event)" (onNodeSelect)="nodeSelect($event)"
+                [style]="{'max-height':'200px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <p-panel header="关联账户信息" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-dataTable [value]="roleUsers"
+                     [paginator]="false" rows="15" [responsive]="true"
+                     [resizableColumns]="true"
+                     [style]="{'max-height':'200px','overflow':'auto'}"
+        >
+
+          <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+          <p-column field="account" header="登录账户" [style]="{'width':'100px'}"></p-column>
+          <p-column field="name" header="账户名称" [style]="{'width':'120px'}"></p-column>
+          <p-column styleClass="col-button" [style]="{'width':'80px'}">
+            <ng-template pTemplate="header">
+              <!--<button type="button" pButton icon="fa-refresh"></button>-->
+              <label>操作</label>
+            </ng-template>
+            <ng-template let-user="rowData" pTemplate="body">
+              <button type="button" pButton (click)="delBindUser(user)" label="删除" icon=""></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </p-panel>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-7">
+    <div class="ui-grid-row">
+      <p-panel header="业务角色展示" [toggleable]="true"
+               [style]="{'margin-bottom':'0px'}">
+        <p-dataTable [value]="busiRoles"
+                     [(selection)]="selectedRole" (onRowSelect)="onRowSelect($event)"
+                     (onRowUnselect)="onRowUnselect($event)"
+                     [paginator]="false" rows="15" [responsive]="true"
+                     [resizableColumns]="true"
+                     [style]="{'max-height':'200px','overflow':'auto'}"
+
+        >
+          <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
+          <p-column field="name" header="业务角色名称" [style]="{'width':'20%'}"></p-column>
+          <p-column field="description" header="描述信息" [style]="{'width':'30%'}"></p-column>
+
+          <p-column styleClass="col-button" [style]="{'width':'10%'}">
+            <ng-template pTemplate="header">
+              <!--<button type="button" pButton icon="fa-refresh"></button>-->
+              <label>操作</label>
+            </ng-template>
+            <ng-template let-team="rowData" pTemplate="body">
+              <button type="button" pButton (click)="delTeam(team)" label="删除" icon=""></button>
+            </ng-template>
+          </p-column>
+          <p-column styleClass="col-button" [style]="{'width':'10%'}">
+            <ng-template pTemplate="header">
+              <!--<button type="button" pButton icon="fa-refresh"></button>-->
+              <label>操作</label>
+            </ng-template>
+            <ng-template let-team="rowData" pTemplate="body">
+              <button type="button" pButton (click)="modiTeam(team)" label="修改" icon=""></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </p-panel>
+
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2" style="margin-right: 10px">
+        <button type="button" pButton (click)="addRole()" label="新增角色" icon=""></button>
+      </div>
+      <div class="ui-grid-col-2" style="margin-right: 10px">
+        <button type="button" pButton (click)="addUser()" label="关联用户" icon=""></button>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <p-panel header="待授权菜单树" [toggleable]="true"
+               [style]="{'margin-top':'10px'}">
+        <p-tree [value]=this.menus selectionMode="single" [(selection)]="selectedMenus"
+                (onNodeSelect)="nodeSelect1($event)" (onNodeUnselect)="nodeUnSelect1($event)" selectionMode="checkbox"
+                [style]="{'max-height':'200px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6"><label>&nbsp;</label>
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp;</label></div>
+      <div class="ui-grid-col-2">
+
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp; </label></div>
+      <div class="ui-grid-col-2">
+        <button type="text" pButton label="保存" (click)="saveAuth()"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="业务角色管理" [width]="500" [height]="380" [(visible)]="displayDialog" [responsive]="true"
+          showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4" style="margin: 10px"><label for="name">业务角色名称</label></div>
+      <div class="ui-grid-col-8"><input style="margin: 10px" pInputText id="name" [(ngModel)]="busiRole.name"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4" style="margin: 10px"><label for="description">描述信息</label></div>
+      <div class="ui-grid-col-8"><input style="margin: 10px" pInputText id="description"
+                                        [(ngModel)]="busiRole.description"/></div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <!--<button type="button" pButton icon="fa-close" (click)="deleteRole()" label="删除"></button>-->
+      <button type="button" pButton icon="fa-check" (click)="saveRole()" label="保存"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+<p-dialog header="角色用户关联" [width]="800" [height]="500" [(visible)]="displayDialog1" [responsive]="true"
+          showEffect="fade" [modal]="true">
+  <app-userdialog #g1 (onClose)="userClose()"></app-userdialog>
+</p-dialog>

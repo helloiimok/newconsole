@@ -1,0 +1,109 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-5">
+    <p-panel header="工作组信息" [toggleable]="true"
+             [style]="{'margin-bottom':'10px','max-height':'400px','overflow':'auto'}"
+    >
+      <p-dataTable [value]="roles" [(selection)]="selectedRole"
+                   (onRowSelect)="onRowSelect($event)" dataKey="no" (onRowUnselect)="teamUnSelect($event)"
+                   [editable]="true" rows="15"
+                   (onEditComplete)="onChangeTeam($event)"
+                   [style]="{'max-height':'350px','overflow':'auto'}">
+        <p-column field="no" header="序号"  [style]="{'width':'50px'}"></p-column>
+        <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
+        <p-column field="name" header="组名称" [editable]="true"></p-column>
+        <p-column field="description" header="组工作内容描述" [editable]="true"></p-column>
+        <p-column styleClass="col-button">
+          <ng-template pTemplate="header">
+            <button type="button" pButton icon="fa-refresh"></button>
+          </ng-template>
+          <ng-template let-team="rowData" pTemplate="body">
+            <button type="button" pButton (click)="delTeam(team)" label="删除" icon=""></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </p-panel>
+    <div class="ui-grid-row">
+
+      <div class="ui-grid-col-2" style="margin: 10px" >
+        <button type="text" pButton label="组新增" (click)="newTeam()"></button>
+      </div>
+      <div class="ui-grid-col-2" style="margin: 10px">
+        <button type="text" pButton label="组保存" (click)="saveTeam()"></button>
+      </div>
+      <div class="ui-grid-col-8">
+      </div>
+
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-7">
+    <p-panel header="用户信息" [toggleable]="true"
+             [style]="{'margin-bottom':'10px'}"
+    >
+      <p-dataTable [value]="users" [(selection)]="selectUsers"  dataKey="no"
+                   (onRowSelect)="handleRowSelect($event)"
+                   [editable]="true" rows="15"
+                   (onEditComplete)="onChangeAccount($event)"
+                   [style]="{'max-height':'300px','overflow':'auto'}"
+      >
+        <p-column field="no" header="序号"  [style]="{'width':'50px'}">
+        </p-column>
+        <!--<p-column [style]="{'width':'46px'}" selectionMode="multiple"></p-column>-->
+        <p-column field="account" header="账号"  [editable]="true">
+        </p-column>
+        <p-column field="name" header="账户名称" [editable]="true"></p-column>
+        <p-column field="password" header="密码" [editable]="true">
+          <ng-template let-col let-car="rowData" pTemplate="body">
+            <span>{{car[col.field]|password}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="audit_level" header="审核级别" [editable]="true" [style]="{'width':'80px'}">
+          <ng-template let-col let-car="rowData" pTemplate="body">
+            {{this.conService.getOptionLabel(this.opts,car[col.field])}}
+          </ng-template>
+          <ng-template let-col let-car="rowData" pTemplate="editor">
+            <p-dropdown [(ngModel)]="car[col.field]" [options]=this.opts [autoWidth]="false"
+                        [style]="{'width':'100%'}" required="true" appendTo="body">
+
+            </p-dropdown>
+          </ng-template>
+        </p-column>
+        <p-column field="mobile_telephone" header="电话" [editable]="true"></p-column>
+        <p-column field="sex" header="性别" [editable]="true" [style]="{'width':'60px'}">
+          <ng-template let-col let-car="rowData" pTemplate="body">
+            {{this.conService.getOptionLabel(this.sexs,car[col.field])}}
+          </ng-template>
+          <ng-template let-col let-car="rowData" pTemplate="editor">
+            <p-dropdown [(ngModel)]="car[col.field]" [options]=this.sexs [autoWidth]="false"
+                        [style]="{'width':'100%'}" required="true" appendTo="body">
+
+            </p-dropdown>
+          </ng-template>
+        </p-column>
+
+        <p-column styleClass="col-button">
+          <ng-template pTemplate="header">
+            <button type="button" pButton icon="fa-refresh"></button>
+          </ng-template>
+          <ng-template let-user="rowData" pTemplate="body">
+            <button type="button" pButton (click)="delUser(user)" label="删除" icon=""></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </p-panel>
+    <div class="ui-grid-row" >
+      <div class="ui-grid-col-8" ></div>
+
+      <div class="ui-grid-col-2"  style="margin: 10px" >
+        <button type="text" pButton label="用户新增" (click)="newUser()"></button>
+      </div>
+      <div class="ui-grid-col-2" style="margin: 10px" >
+        <button type="text" pButton label="保存" (click)="saveUser()"></button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!--<p-dialog header="账号编辑" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">-->
+  <!--<app-newuser></app-newuser>-->
+<!--</p-dialog>-->

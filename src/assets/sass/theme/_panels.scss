@@ -1,0 +1,215 @@
+body {
+    .ui-panel {
+        padding: 0;
+
+        .ui-panel-titlebar {
+            border: 0 none;
+            padding: $headerPadding;
+            @include border-radius-top($borderRadius);
+            @include border-radius-bottom(0px);
+
+            .ui-panel-titlebar-icon {
+                position: relative;
+                color: #ffffff;
+                border:1px solid transparent;
+                @include transition(color .3s);
+
+                &:hover {
+                    color: $primaryColor;
+                }
+
+                &:focus {
+                    outline: 0 none;
+                    border:1px solid $primaryColor;
+                    @include link-focus-shadow();
+                }
+            }
+        }
+
+        .ui-panel-content {
+            height: 100%;
+            box-sizing: border-box;
+            padding: $contentPadding;
+        }
+
+        .ui-panel-footer {
+            padding: $headerPadding;
+            border: 0 none;
+            border-top: 1px solid $contentBorderColor;
+            margin: 0;
+        }
+
+        &.ui-panel-collapsed-h {
+            .ui-panel-titlebar {
+                padding-left: 40px;
+            }
+        }
+    }
+
+    .ui-fieldset {
+        padding: 0 0 .5em 0;
+
+        .ui-fieldset-legend {
+            color: $headerTextColor;
+            background-color: $headerBgColor;
+            margin-left: .75em;
+            @include transition(background-color .3s);
+
+            a {
+                color: inherit;
+            }
+
+            .ui-fieldset-toggler {
+                float: none;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            &:hover {
+                background-color: $primaryColor;
+            }
+        }
+
+        .ui-fieldset-content {
+            padding: $contentPadding;
+        }
+    }
+
+    .ui-notificationbar {
+        background-color: $primaryColor;
+        color: #ffffff;
+    }
+
+    .ui-accordion {
+        .ui-accordion-header {
+            background-color: $headerBgColor;
+            padding: 0;
+            color:#ffffff;
+            font-size: $fontSize;
+            @include transition(background-color .3s);
+
+            &:not(.ui-state-active):not(.ui-state-disabled):hover {
+                background-color: $headerHoverBgColor;
+            }
+
+            &.ui-state-active {
+                background-color: $primaryColor;
+                color: #ffffff;
+
+                a {
+                    color: #ffffff;
+                }
+            }
+
+            .fa-caret-right {
+                @include icon_override("\f054");
+            }
+
+            .fa-caret-down {
+                @include icon_override("\f078");
+            }
+
+            > a {
+                padding: $headerPadding;
+                color: #ffffff;
+            }
+        }
+
+        .ui-accordion-content {
+            padding: $contentPadding;
+        }
+    }
+
+    .ui-tabview {
+        padding: 0;
+
+        &.ui-tabview-top,&.ui-tabview-bottom,&.ui-tabview-left,&.ui-tabview-right {
+            .ui-tabview-nav {
+                padding: 0;
+
+                li {
+                    position: static;
+                    @include transition(background-color .3s);
+                    @include border-radius(0);
+                    margin: 0;
+                    box-sizing: border-box;
+
+                    a {
+                        padding: $headerPadding;
+                        color: #ffffff;
+
+                        &:focus {
+                            outline: 0 none;
+                        }
+
+                        .ui-tabview-left-icon {
+                            margin-right: .25em;
+                        }
+
+                        .ui-tabview-right-icon {
+                            margin-left: .25em;
+                        }
+                    }
+
+                    .ui-tabview-close {
+                        margin-top: .65em;
+                    }
+
+                    &:not(.ui-state-active):not(.ui-state-disabled):hover {
+                        background-color: $headerHoverBgColor;
+                    }
+
+                    &.ui-state-active {
+                        background-color: $primaryColor;
+
+                        &.ui-tabview-outline {
+                            background-color: lighten($primaryColor,5%);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.ui-tabview-left,&.ui-tabview-right {
+            .ui-tabview-nav {
+                li {
+                    width: 100%;
+                }
+            }
+        }
+
+        .ui-tabview-panel {
+            padding: $contentPadding;
+        }
+    }
+
+    .ui-scrollpanel {
+        .ui-scrollpanel-drag {
+            background-color: #a8acb1;
+        }
+
+        .ui-scrollpanel-track {
+            background-color: #f0f3f5;
+        }
+
+        .ui-scrollpanel-corner {
+            background-color: #f0f3f5;
+        }
+    }
+
+    .ui-toolbar {
+        padding: $headerPadding;
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        .ui-panelgrid {
+            .ui-grid-responsive {
+                .ui-grid-row {
+                    border: 0 none;
+                }
+            }
+        }
+    }
+}

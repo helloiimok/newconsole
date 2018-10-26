@@ -1,0 +1,43 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-6">
+    <p-panel header="各省信息" [toggleable]="true"
+             [style]="{'margin-bottom':'10px'}"
+    >
+      <p-dataTable [value]="provs" [(selection)]="selectProv" dataKey="aar001"
+                   (onRowSelect)="handleRowSelect($event)"
+                   (onRowUnselect)="handleRowUnSelect($event)"
+
+      >
+        <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
+        <p-column field="aar009" header="省"></p-column>
+        <p-column field="aar001" header="编号"></p-column>
+      </p-dataTable>
+    </p-panel>
+  </div>
+
+  <div class="ui-g-12 ui-md-6">
+    <div class="ui-grid-row">
+      <p-panel header="菜单树信息" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}"
+      >
+        <p-tree [value]=this.menus selectionMode="single" [(selection)]="selectedMenu"
+                selectionMode="checkbox"
+                (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnSelect($event)"
+                [style]="{'max-height':'400px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6"><label>&nbsp;</label>
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp;</label></div>
+      <div class="ui-grid-col-2">
+
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp; </label></div>
+      <div class="ui-grid-col-2">
+        <button type="text" pButton label="保存" (click)="saveAuth()"></button>
+      </div>
+    </div>
+  </div>
+</div>

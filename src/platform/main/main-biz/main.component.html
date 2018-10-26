@@ -1,0 +1,42 @@
+<div #layoutWrapper class="layout-wrapper  menu-layout-static " [ngClass]="{'layout-menu-static-inactive': staticMenuDesktopInactive,'layout-menu-static-active':staticMenuDesktopInactive}">
+  <!--头部右上角工具条-->
+  <app-topbar></app-topbar>
+  <app-change-password></app-change-password>
+  <!--左侧菜单栏-->
+  <div class="layout-menu-container" (click)="onMenuClick($event)" [ngStyle]="{'height': _height}">
+    <div #layoutMenuScroller class="nano">
+      <div class="nano-content menu-scroll-content">
+        <div class="menu-titles-lb">菜单系统</div>
+        <div class="search-input">
+          <input type="input" [(ngModel)]="keyWords" placeholder="查询" (change)="doMenuFilter()"/>
+          <!--<p-chips [(ngModel)]="keyWords" placeholder="查询" (onAdd)="doMenuFilter()" (onRemove)="doMenuFilter()"></p-chips>-->
+          <i class="fa fa-search" (click)="doMenuFilter()" ></i>
+        </div>
+        <!--左侧文件树-->
+        <app-menu [model]="menuModels"></app-menu>
+        <!-- <div class="layout-menu-footer">
+           <span class="layout-menu-footer-title">Tasks Overview</span>
+           <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+           Today
+           <p-progressBar [value]="80" [showValue]="false"></p-progressBar>
+           Overall
+         </div>-->
+      </div>
+    </div>
+  </div>
+  <!--主体内容部分-->
+  <div class="layout-main">
+    <div class="layout-main-content">
+      <div class="ui-g-12 ui-md-12 main-content-lb" style="width: 100%;margin-top:-10px;padding:0px;">
+        <div id='main'>
+          <nui-biz-tabView class="width100 height100"  [tabs]="menuData.tabs" [activeIndex]="menuData.activeTabIndex"
+                           (onClose)="onTabClosed($event)"></nui-biz-tabView>
+        </div>
+      </div>
+      <!--<router-outlet></router-outlet>-->
+      <!--底部说明-->
+      <!-- <app-footer></app-footer>-->
+    </div>
+  </div>
+  <div class="layout-mask"></div>
+</div>

@@ -1,0 +1,29 @@
+<div class="content-section implementation">
+  <p-dataTable [value]="users" [(selection)]="selectedUsers"
+               rows="15" [responsive]="true"
+               [resizableColumns]="true"
+               [paginator]="true"
+               [totalRecords]="totalRecords" (onLazyLoad)="loadCarsLazy($event)"
+               scrollable="true" scrollHeight="300px">
+
+    <p-column field="no" header="序号" [style]="{'width':'50px'}"></p-column>
+    <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+    <p-column field="account" header="登录账户"></p-column>
+    <p-column field="name" header="账户名称"></p-column>
+    <!--<p-column styleClass="col-button" [style]="{'width':'10%'}">-->
+    <!--<ng-template pTemplate="header">-->
+    <!--&lt;!&ndash;<button type="button" pButton icon="fa-refresh"></button>&ndash;&gt;-->
+    <!--<label>操作</label>-->
+    <!--</ng-template>-->
+    <!--<ng-template let-user="rowData" pTemplate="body">-->
+    <!--<button type="button" pButton (click)="delUser(user)" label="删除" icon=""></button>-->
+    <!--</ng-template>-->
+    <!--</p-column>-->
+  </p-dataTable>
+</div>
+<p-footer>
+  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <!--<button type="button" pButton icon="fa-close" (click)="deleteRole()" label="删除"></button>-->
+    <button type="button" pButton icon="fa-check" (click)="save()" label="保存"></button>
+  </div>
+</p-footer>

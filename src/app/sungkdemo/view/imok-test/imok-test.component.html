@@ -1,0 +1,25 @@
+<p-growl [value]="msgs"></p-growl>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <div class="card">
+      <h3>菜单管理</h3>
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+          <p-tree [value]="files2" selectionMode="single" [(selection)]="selectedFile2"
+                  [contextMenu]="cm"
+                  [style]="{'max-height':'400px','overflow':'auto'}">
+          </p-tree>
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <p-dataTable [value]="files3">
+            <p-column field="label" header="label"></p-column>
+            <p-column field="data" header="data"></p-column>
+            <p-column field="icon" header="icon"></p-column>
+          </p-dataTable>
+        </div>
+      </div>
+      <p-contextMenu #cm [model]="items"></p-contextMenu>
+      <button type="text" pButton label="设置" (click)="test()"></button>
+    </div>
+  </div>
+</div>

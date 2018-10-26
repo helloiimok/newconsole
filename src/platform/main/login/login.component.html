@@ -1,0 +1,37 @@
+<div class="loginPage"><p-growl [value]="msgs"></p-growl>
+<div class="login-title" id="login-title"></div>
+  <div class="login-panel" id="login-panel">
+    <div class="login-content-lb" id="login-content-lb">
+    <div class="content-div-lb login-img-lb" >
+    </div>
+    <div class="content-div-lb input-area-lb">
+      <form [formGroup]="loginForm">
+        <div>
+          <p  class="username">用户名:</p>
+          <input pInputText type="text" formControlName="account" tooltipPosition="top" pTooltip="{{ formErrors.account }}"
+                 (keydown)="keyPress($event, 'account')" #account placeholder="请输入用户名"/><br/>
+        </div>
+        <div>
+          <p  class="password">密码:</p>
+          <input pPassword type="password" [feedback]="false" formControlName="password" tooltipPosition="top"
+                 (keydown)="keyPress($event, 'password')" pTooltip="{{ formErrors.password }}" #password
+                 placeholder="请输入密码"/><br/>
+        </div>
+        <div>
+          <p class="inputCode">验证码:</p>
+          <input pInputText type="text" formControlName="inputCode" tooltipPosition="top" class="inputCodeText" style="width:114px;"
+                 (keydown)="keyPress($event, 'inputCode')" pTooltip="{{ formErrors.inputCode }}" #inputCode
+                 placeholder="请输入验证码"/><br/>
+          <!--<div class="input-code-img-lb"></div>-->
+          <div class="input-code-img-lb"><a href="javascript:void(0)" (click)="createValidateCode()"><img id="inputImage" src=""/></a></div>
+        </div>
+        <button pButton label="登录" (click)="login()" type="button" [disabled]="!loginForm.valid"></button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="login-note">
+  <p>东软集团股份有限公司 &nbsp;&nbsp;研发</p>
+  <p>Neusoft 1999-2017. All Rights Reserved</p>
+</div>
+</div>

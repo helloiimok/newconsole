@@ -1,0 +1,37 @@
+body {
+    .ui-progressbar {
+        .ui-progressbar-value {
+            background-color: $primaryColor;
+            margin: 0;
+            @include border-radius(0);
+        }
+        
+        .ui-progressbar-label {
+            color: lighten($primaryColor, 10%);
+            margin-top: -2px;
+        }
+    }
+    
+    .ui-galleria {
+        .ui-galleria-nav-prev {
+            @include icon_override("\f053");
+            font-size: 18px;
+            margin-bottom: -5px;
+            margin-left: -5px;
+        }
+        
+        .ui-galleria-nav-next {
+            @include icon_override("\f054"); 
+            font-size: 18px;  
+            margin-bottom: -5px; 
+            margin-right: -5px;
+        }
+    }
+    
+    .ui-terminal {
+        input {
+            font-family: $fontFamily;
+            font-size: $fontSize;
+        }
+    }
+}

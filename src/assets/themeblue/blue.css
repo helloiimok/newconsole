@@ -1,0 +1,345 @@
+/*=============================================================commom样式========================================================================*/
+* {
+  font-size: 12px;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.layout-wrapper .topbar {
+  height: 65px;
+}
+
+.layout-wrapper.menu-layout-static .layout-main {
+  margin-left: 250px;
+}
+
+.layout-wrapper .layout-main {
+  padding: 65px 0 15px 0;
+  transition: margin-left 0.3s;
+}
+/*.layout-wrapper .topbar .topbar-left*/
+.layout-wrapper .topbar .topbar-left {
+  padding: 8px 20px 0px 35px;
+  height: 65px;
+  width: 250px;
+}
+
+.layout-wrapper .layout-menu-container {
+  width: 250px;
+  top: 65px;
+}
+
+body .ui-state-active, body .ui-state-highlight {
+  background-color: #4f98b6; /*color: #ffffff;*/
+}
+/*==========================================================中间功能区域内容==============================================================*/
+/*黑色容器头部*/
+/*body .ui-widget-header {*/
+/*background-color: #42494f;*/
+/*color: #f0f3f5;*/
+/*}*/
+/*body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon {*/
+/*color: #f0f3f5;*/
+/*}*/
+
+/*渐变容器头部*/
+/*body .ui-widget-header {*/
+/*color: #35566e;*/
+/*background: -webkit-linear-gradient(#dae8f5, #afd0ed,#dae8f5); !* Safari 5.1 - 6.0 *!*/
+/*background: -o-linear-gradient(#dae8f5, #afd0ed,#dae8f5); !* Opera 11.1 - 12.0 *!*/
+/*background: -moz-linear-gradient(#dae8f5, #afd0ed,#dae8f5); !* Firefox 3.6 - 15 *!*/
+/*background: linear-gradient(#dae8f5, #afd0ed,#dae8f5); !* 标准的语法（必须放在最后） *!*/
+/*}*/
+/*body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon {color: #35566e;}*/
+
+/*渐变容器头部 蓝-白-蓝*/
+body .ui-widget-header {
+  color: #35566e;
+  background: -webkit-linear-gradient(#d5e5f6, #eaf2fe, #d5e5f6); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#d5e5f6, #eaf2fe, #d5e5f6); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#d5e5f6, #eaf2fe, #d5e5f6); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#d5e5f6, #eaf2fe, #d5e5f6); /* 标准的语法（必须放在最后） */
+  border-top: 1px #bdd4e9 solid !important;
+  border-bottom: 1px #bdd4e9 solid !important;
+}
+
+body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon {
+  color: #35566e;
+}
+
+body .ui-panel .ui-panel-titlebar {
+  padding: 0.3em 1em;
+}
+
+/*渐变按钮*/
+/*body .ui-button{*/
+/*color: #35566e;*/
+/*background: -webkit-linear-gradient(#d8ebfe, #afd0ed,#d8ebfe); !* Safari 5.1 - 6.0 *!*/
+/*background: -o-linear-gradient(#d8ebfe, #afd0ed,#d8ebfe); !* Opera 11.1 - 12.0 *!*/
+/*background: -moz-linear-gradient(#d8ebfe, #afd0ed,#d8ebfe); !* Firefox 3.6 - 15 *!*/
+/*background: linear-gradient(#d8ebfe, #afd0ed,#d8ebfe); !* 标准的语法（必须放在最后） *!*/
+/*border: 1px #afd0ed solid;*/
+/*}*/
+
+/*纯色按钮*/
+body .ui-button {
+  background: #4f98b6 !important;
+}
+
+body .ui-button:hover {
+  background: #2f83a6 !important;
+}
+
+/*渐变按钮*/
+/*body .ui-button {  background: linear-gradient(#d5e5f6, #bcdef9,#d5e5f6);  border: 1px #ccc solid;  color: #000;  }*/
+/*body .ui-button:hover{  background: linear-gradient(#d5e5f6, #bcdef9,#d5e5f6);  border: 1px #c0bebe solid;  color: #000;  }*/
+
+body .ui-datatable .ui-datatable-header, body .ui-datatable .ui-datatable-footer {
+  padding: 0.3em 1em;
+}
+
+body .ui-datatable .ui-paginator {
+  padding: 0;
+}
+
+.layout-wrapper .layout-main .layout-main-content {
+  padding: 0;
+}
+
+body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon:hover {
+  color: #4f98b6;
+}
+
+/*==========================================================左侧菜单区域区域内容==============================================================*/
+/*.layout-wrapper .layout-menu-container{background:#d4e7f6!important;}*/
+/*.layout-wrapper .layout-menu-container{background:#42494f!important;}*/
+.layout-wrapper .layout-menu-container .search-input {
+  padding: 0;
+}
+
+.layout-wrapper .layout-menu-container .search-input .fa-search {
+  right: 12px;
+  top: 9px;
+}
+
+.layout-wrapper .layout-menu-container {
+  background: #ffffff;
+}
+
+.layout-wrapper .layout-menu li:first-child {
+  border-top: 0 !important;
+}
+
+.layout-wrapper .layout-menu li {
+  border-top: 1px #ffffff solid;
+  background: #dbeefe;
+}
+
+.layout-wrapper .layout-menu li ul {
+  background: #ffffff;
+  padding: 0;
+}
+
+.layout-wrapper .layout-menu li a:hover {
+  background: #dbeefe;
+  border: 0px #cde2f6 solid;
+}
+
+.layout-wrapper .layout-menu > li.active-menuitem > a {
+  background: #4f98b6;
+}
+
+.layout-wrapper .layout-menu li a {
+  color: #35566e;
+}
+
+.layout-wrapper .layout-menu li a.active-menuitem-routerlink {
+  color: #ff483c !important;
+}
+
+.layout-wrapper .layout-menu li a.active-menuitem-routerlink i {
+  color: #ff483c !important;
+}
+/*.layout-wrapper .layout-menu li.active-menuitem > a{color:#35566e;}*/
+/*.layout-wrapper .layout-menu li a.active-menuitem-routerlink{color: #ccc;}*/
+body .ui-progressbar .ui-progressbar-value {
+  background: #4f98b6;
+}
+
+.layout-wrapper .layout-menu li a i {
+  color: #35566e;
+}
+
+body .ui-tree .ui-treenode .ui-treenode-content .ui-treenode-label.ui-state-highlight {
+  background-color: #4f99b6;
+  color: #ffffff;
+}
+
+.layout-wrapper .layout-menu-container .layout-menu-footer {
+  color: #454f57;
+}
+
+.layout-wrapper .layout-menu-container {
+  background: #eceef1;
+}
+
+.layout-wrapper .layout-menu-container .search-input input {
+  background-color: #9cbbd3;
+  border: 1px solid #9cbbd3;
+  color: #42494f !important;
+}
+
+.layout-wrapper .layout-menu-container .search-input .fa-search {
+  color: #42494f;
+}
+
+.search-input input::placeholder {
+  color: #393e43 !important;
+}
+
+.search-input input:-moz-placeholder {
+  color: #393e43 !important;
+}
+
+.search-input input:-ms-input-placeholder {
+  color: #393e43 !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #393e43 !important;
+}
+
+/*被点击过的上一个菜单的颜色*/
+.layout-wrapper .layout-menu li.active-menuitem > a i {
+  color: #35566e;
+}
+
+.layout-wrapper .layout-menu li.active-menuitem > a {
+  color: #35566e;
+}
+
+/*==========================================================头部导航区域区域内容==============================================================*/
+.layout-wrapper .topbar {
+  background-color: #4f98b6;
+}
+
+.layout-wrapper .topbar .topbar-right #menu-button {
+  color: #ffffff;
+}
+
+.layout-wrapper .topbar-items > li > a {
+  color: #ffffff;
+}
+
+.layout-wrapper .topbar-items > li .topbar-icon {
+  font-size: 2em;
+}
+
+.layout-wrapper .topbar-items > li .topbar-icon:hover {
+  color: #35566e;
+}
+
+.layout-wrapper .topbar-items > li.profile-item .profile-image {
+  width: 2em;
+  height: 2em;
+}
+
+.layout-wrapper .topbar-items > li > a .topbar-badge {
+  background-color: #ff483c;
+}
+
+.layout-wrapper .topbar .topbar-left {
+  background-color: #4f98b6;;
+}
+
+
+.toolbartext {
+  position: absolute;
+  bottom: 2px;
+  right: 50px;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.toolbartext:before {
+  content: url(images/usericon.png);
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  left: -25px;
+  top: 3px;
+}
+
+.toolbartext span {
+  color: #81d5ff;
+  padding: 0 5px;
+  font-size: 16px;
+}
+
+.layout-wrapper .topbar .topbar-right #menu-button {
+  top: 0;
+}
+
+/*分页样式*/
+body .ui-paginator .ui-paginator-first, body .ui-paginator .ui-paginator-prev, body .ui-paginator .ui-paginator-next, body .ui-paginator .ui-paginator-last {
+  color: #4f99b6;
+}
+
+body .ui-state-disabled, body .ui-widget:disabled {
+  opacity: 0.65;
+}
+
+.ui-paginator-pages .ui-state-active {
+  background-color: #4f98b6 !important;
+}
+
+/*dialog的样式*/
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+  color: #569ab6;
+}
+
+body .ui-radiobutton .ui-radiobutton-box.ui-state-active .ui-radiobutton-icon {
+  background-color: #4f98b6;
+  transform: scale(1.1);
+}
+
+/*总体单选框选框样式*/
+body .ui-radiobutton .ui-radiobutton-box {
+  width: 14px;
+  height: 14px;
+}
+
+/*总体多选框*/
+body .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
+  font-size: 12px;
+}
+
+body .ui-chkbox .ui-chkbox-box {
+  width: 18px;
+  height: 18px;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+  border: 1px solid #4f98b6;
+  background-color: #4f98b6;
+}
+
+/*公共表格选中样式*/
+body .ui-datatable .ui-datatable-data tr.ui-datatable-even.ui-state-highlight {
+  background-color: #d4d6d8;
+  color: #ffffff;
+  border-color: #b4b6b8;
+}
+
+.ui-datatable .ui-state-active, .ui-datatable .ui-state-highlight {
+  background-color: #d4d6d8;
+  color: #ffffff;
+  border-color: #b4b6b8;
+}
+
+body .ui-datatable .ui-datatable-data tr.ui-state-highlight {
+  border-color: #b4b6b8;
+}

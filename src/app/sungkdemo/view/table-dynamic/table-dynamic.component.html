@@ -1,0 +1,22 @@
+<p-growl [value]="msgs"></p-growl>
+
+
+<button type="text" pButton label="设置" (click)="op3.toggle($event)"></button>
+<button type="text" pButton label="新增" (click)="add()"></button>
+<p-overlayPanel #op1>
+  <img src="assets/demo/images/car/Audi.gif" alt="Galleria 1"/>
+</p-overlayPanel>
+
+<p-dataTable [value]="cars">
+  <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-dataTable>
+
+<p-overlayPanel #op3 [showCloseIcon]="false" [dismissable]="false">
+  <p-dataTable [value]="un_cols" [(selection)]="cols" dataKey="field"
+               (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+               [style]="{'width':'300px'}">
+    <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+    <p-column field="field" header="显示列选择"></p-column>
+  </p-dataTable>
+</p-overlayPanel>
+

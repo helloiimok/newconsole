@@ -1,0 +1,185 @@
+body {
+    .ui-overlaypanel {
+        @include overlay-shadow();
+        
+        .ui-overlaypanel-close {
+            background-color: $headerBgColor;
+            color: #ffffff;
+            width: 1.5em;
+            height: 1.5em;
+            text-align: center;
+            @include transition(background-color $transitionDuration);
+            
+            &:hover {
+                background-color: $primaryColor;
+            }
+        }
+    }
+    
+    .ui-dialog {
+        @include overlay-shadow();
+        border: 0 none;
+        
+        .ui-dialog-titlebar {
+            padding: $headerPadding;
+            
+            .ui-dialog-title {
+                margin: 0;
+                float: none;
+            }
+            
+            .ui-dialog-titlebar-icon {
+                color: #ffffff;
+                border: 0 none;
+                @include transition(color $transitionDuration);
+                padding: 0;
+                margin-left: .35em;
+                font-size: $fontSize + 2;
+                
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+        
+        .ui-dialog-content {
+            padding: $contentPadding;
+        }
+        
+        .ui-dialog-buttonpane {
+            padding: $headerPadding;
+            text-align: right;
+            
+            button {
+                margin: 0 .35em 0 0;
+            }
+        }
+                
+        &.ui-confirm-dialog {
+            .ui-dialog-content {
+                padding: 1.5em;
+                
+                > span {
+                    float: none;
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: $fontSize;
+                    margin: 0;
+                    
+                    &.ui-icon {
+                        margin-right: .35em;
+                        font-size: $fontSize + 2;
+                    }
+                }
+            }
+        }
+        
+        .ui-dialog-footer {
+            border: 0 none;
+            border-top: 1px solid $dividerColor;
+        }
+    }
+        
+    .ui-tooltip {
+        .ui-tooltip-text {
+            @include overlay-shadow();
+        }
+                
+        .ui-tooltip-text {
+            background-color: $headerBgColor;
+        }
+        
+        &.ui-tooltip-right, &.ui-tooltip.ui-tooltip-left {
+            padding: 0 3px;
+        }
+        
+        &.ui-tooltip-top, &.ui-tooltip.ui-tooltip-bottom {
+            padding: 3px 0;
+        }
+        
+        &.ui-tooltip-right {
+            .ui-tooltip-arrow {
+                border-right-color: $headerBgColor;
+            }
+        }
+        
+        &.ui-tooltip-left {
+            .ui-tooltip-arrow {
+                border-left-color: $headerBgColor;
+            }
+        }
+        
+        &.ui-tooltip-top {
+            .ui-tooltip-arrow {
+                border-top-color: $headerBgColor;
+            }
+        }
+        
+        &.ui-tooltip-bottom {
+            .ui-tooltip-arrow {
+                border-bottom-color: $headerBgColor;
+            }
+        }
+    }
+    
+    .ui-lightbox {
+        @include overlay-shadow();
+        
+        .ui-lightbox-caption {
+            padding: $headerPadding;
+            
+            .ui-lightbox-caption-text {
+                color: $headerTextColor;
+                margin: 0;
+            }
+            
+            .ui-lightbox-close {
+                padding: 0;
+                color: $headerTextColor;
+                @include transition(color .3s);
+                
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+        
+        .ui-lightbox-content-wrapper {
+            overflow: hidden;
+                      
+            .ui-lightbox-nav-left {
+                @include icon_override("\f053");
+                @include transition(all .3s);
+                font-size: 24px;
+                margin-left: 4px;
+
+                &:hover {
+                    @include scale(1.2);
+                }
+                
+                span {
+                    display: none;
+                }
+            }
+            
+            .ui-lightbox-nav-right {
+                @include icon_override("\f054");
+                @include transition(all .3s);
+                font-size: 24px;
+                margin-right: 4px;
+                
+                &:hover {
+                    @include scale(1.2);
+                }
+                
+                span {
+                    display: none;
+                }
+            }
+            
+            .ui-lightbox-content.ui-lightbox-loading + a {
+                display: none;
+            }
+        }
+    }
+}

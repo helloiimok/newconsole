@@ -1,0 +1,48 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-6">
+    <p-panel header="工作组信息" [toggleable]="true"
+             [style]="{'margin-bottom':'10px','max-height':'400px','overflow':'auto'}"
+    >
+      <p-dataTable [value]="teams" [(selection)]="selectedRole"
+                   (onRowSelect)="onRowSelect($event)" dataKey="no"
+                   (onRowUnselect)="onRowUnselect($event)"
+                   [editable]="false" rows="15"
+                   [style]="{'max-height':'350px','overflow':'auto'}">
+        <p-column field="no" header="序号" [style]="{'width':'50px'}"></p-column>
+        <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
+        <p-column field="name" header="组名称" [editable]="true">
+
+        </p-column>
+        <p-column field="description" header="组工作内容描述" [editable]="true"></p-column>
+      </p-dataTable>
+    </p-panel>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+
+    <div class="ui-grid-row">
+
+      <p-panel header="待选权限表" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.roles selectionMode="single" [(selection)]="readySelRole"
+                (onNodeExpand)="nodeExpand($event)" (onNodeSelect)="nodeSelect($event)"
+                [contextMenu]="cm"
+                [style]="{'max-height':'200px','overflow':'auto'}">
+        </p-tree>
+        <p-contextMenu #cm [model]="items"></p-contextMenu>
+      </p-panel>
+
+    </div>
+
+    <div class="ui-grid-row">
+      <p-panel header="已授限表" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.alreadyRoles selectionMode="single" [(selection)]="alreadySelRole"
+                (onNodeExpand)="nodeExpand2($event)" (onNodeSelect)="nodeSelect2($event)"
+                [contextMenu]="cm1"
+                [style]="{'max-height':'200px','overflow':'auto'}">
+        </p-tree>
+        <p-contextMenu #cm1 [model]="items1"></p-contextMenu>
+      </p-panel>
+    </div>
+  </div>
+</div>

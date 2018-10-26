@@ -1,0 +1,69 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-3">
+    <div class="ui-grid-row">
+      <p-panel header="机构树" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.roles selectionMode="single" [(selection)]="selRoles"
+                (onNodeExpand)="nodeExpand($event)" (onNodeSelect)="nodeSelect($event)"
+                [style]="{'max-height':'400px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <p-panel header="角色关联用户列表" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-dataTable [value]="roleUsers" selectionMode="single"
+                     [paginator]="false" rows="15" [responsive]="true"
+                     [resizableColumns]="true"
+                     [style]="{'max-height':'200px','overflow':'auto'}"
+        >
+          <p-column field="account" header="登录账户"></p-column>
+          <p-column field="name" header="账户名称"></p-column>
+
+        </p-dataTable>
+      </p-panel>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-9">
+    <div class="ui-grid-row">
+      <p-panel header="业务角色展示" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-dataTable [value]="busiRoles" selectionMode="single"
+                     [(selection)]="selectedRole" (onRowSelect)="onRowSelect($event)"
+                     [paginator]="false" rows="15" [responsive]="true"
+                     [resizableColumns]="true"
+
+        >
+          <p-column field="name" header="业务角色名称" [style]="{'width':'20%'}"></p-column>
+          <p-column field="description" header="描述信息" [style]="{'width':'30%'}"></p-column>
+          <p-column field="editrole" header="操作" [style]="{'width':'15%'}"></p-column>
+          <p-column field="adduser" header="操作" [style]="{'width':'15%'}"></p-column>
+          <p-column field="delrole" header="操作" [style]="{'width':'15%'}"></p-column>
+        </p-dataTable>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <p-panel header="菜单树" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.menus selectionMode="single" [(selection)]="selectedMenus"
+                (onNodeSelect)="nodeSelect1($event)" (onNodeUnselect)="nodeUnSelect1($event)" selectionMode="checkbox"
+                [style]="{'max-height':'400px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6"><label>&nbsp;</label>
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp;</label></div>
+      <div class="ui-grid-col-2">
+
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp; </label></div>
+      <div class="ui-grid-col-2">
+        <button type="text" pButton label="保存" (click)="saveAuth()"></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body, html {
+  overflow: hidden;
+  font-size: 12px;
+  background: #fff !important;
+}
+
+ul li {
+  list-style: none;
+}
+
+/****登录页面******/
+.loginPage {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.login-panel {
+  background: url(images/login/loginBj_02.png) center center no-repeat;
+  height: 580px;
+  position: relative;
+  border: 0px red solid;
+  background-size: cover;
+}
+
+.login-content-lb {
+  border: 0px #fff solid;
+  margin: 0 auto;
+  padding: 80px 0;
+  width: 1200px;
+  height: 100%;
+}
+
+.content-div-lb {
+  width: 670px;
+  border: 0px #fff solid;
+  float: left;
+  height: 351px;
+}
+
+.login-img-lb {
+  background: url(images/login/loginImg_04.png) center bottom no-repeat;
+  background-size: 87%;
+  color: #fff;
+  margin-left: 100px;
+}
+
+.login-img-lb ul {
+  float: right;
+}
+
+.login-img-lb ul li {
+  color: #fff;
+}
+
+.login-img-lb ul li span {
+  margin: 0 15px;
+}
+
+.input-area-lb {
+  width: 280px;
+  height: 350px;
+  border: 0px #fff solid;
+  border-radius: 3px;
+  background: url(images/login/inputArea.jpg) #fff no-repeat top center;
+}
+
+.input-area-lb input {
+  width: 180px;
+  background: #e4e5e6;
+  border-color: #e4e5e6;
+  border: 0;
+  height: 25px;
+}
+
+.input-area-lb div {
+  margin: 0 38px 0;
+}
+
+.input-area-lb div p {
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.input-area-lb div:first-child {
+  margin: 70px 38px 0;
+}
+
+.username:before {
+  content: url(images/login/login-icon_01.png);
+  width: 17px;
+  height: 21px;
+  margin-right: 5px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.password:before {
+  content: url(images/login/login-icon_02.png);
+  width: 17px;
+  height: 21px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.inputCode:before {
+  content: url(images/login/login-icon_03.png);
+  width: 17px;
+  height: 21px;
+  margin-right: 5px;
+  vertical-align: sub;
+}
+
+.input-area-lb button {
+  background: #ea5518;
+  width: 190px;
+  color: #fff;
+  margin: 15px 0 0 38px;
+  outline: none;
+  height: 30px;
+  border: 0;
+}
+
+.login-title {
+  background: url(images/login/loginTitle_center.png) center center no-repeat;
+  position: absolute;
+  top: 0;
+  height: 108px;
+  width: 1042px;
+  z-index: 1;
+  background-size: 80%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.login-note {
+  text-align: right;
+  color: #353535;
+  background: url("images/login/login_line.png") no-repeat left center;
+  background-size: 85%;
+  width: 272px;
+  height: 40px;
+  margin: 3% auto 0;
+  padding-left: 100px;
+  padding-right: 10px;
+}
+
+.welcome-login-note {
+  width: 383px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5%;
+}
+
+.login-note p:first-child {
+  font-size: 15px;
+}
+
+.inputImage {
+  background: url(images/login/code.jpg) center center no-repeat;
+  width: 40%;
+  float: right;
+  border: 0px red solid;
+  display: inline-block;
+  height: 25px;
+}
+
+/*=========淡出============*/
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  50% {
+    opacity: 0; /*中间状态 透明度为0*/
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+  }
+}
+
+/*=========左边淡入页面=======*/
+@keyframes lefteaseinAnimate {
+  0% {
+    transform: translateX(-2000px);
+    opacity: 0;
+  }
+  /*在0%时设置文字在想X轴-2000px位移处（左边），透明度为0，也就是看不见文字*/
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  /*在100%时设置文字在想X轴0px位移处，也就是原始布局的位置，透明度为1，也就是文字可以看见了*/
+}
+
+/*#login-title{-webkit-animation-name: fadeIn; !*动画名称*!*/
+/*-webkit-animation-duration: 2s; !*动画持续时间*!*/
+/*-webkit-animation-iteration-count: 1; !*动画次数*!*/
+/*-webkit-animation-delay: 0s; !*延迟时间*!*/
+/*}*/
+
+@media screen and (max-width: 1366px) {
+  .login-panel {
+    height: 440px;
+  }
+
+  .login-content-lb {
+    padding-top: 30px;
+  }
+}
+
+.input-code-img-lb {
+  width: 50px;
+  height: 27px;
+  float: right;
+  margin-bottom: 47px;
+  margin-top: -26px !important;
+  /*margin-right:0px!important;*/
+  background-size: cover;
+}

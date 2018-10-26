@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('../node_modules/sweetalert2/dist/sweetalert2.min.css');
+/**jiangy.neu 20180323*/
+/*****框架自带布局主题******/
+@import url('assets/layout/css/layout-blue.css');
+//@import url('assets/layout/css/layout-deep-purple.css');
+//@import url('assets/layout/css/layout-green.css');
+//@import url('assets/layout/css/layout-light-blue.css');
+//@import url('assets/layout/css/layout-orange.css');
+//@import url('assets/layout/css/layout-pink.css');
+//@import url('assets/layout/css/layout-purple.css');
+//@import url('assets/layout/css/layout-turquoise.css');
+/*****框架自带内容主题******/
+@import url('assets/theme/theme-blue.css');
+//@import url('assets/theme/theme-deep-purple.css');
+//@import url('assets/theme/theme-green.css');
+//@import url('assets/theme/theme-light-blue.css');
+//@import url('assets/theme/theme-orange.css');
+//@import url('assets/theme/theme-pink.css');
+//@import url('assets/theme/theme-purple.css');
+//@import url('assets/theme/theme-turquoise.css');
+/*自定义主题*/
+@import url('assets/themeblue/blue.css');
+@import url('assets/themeblue/layout-blue.css');
+
+/*登录页样式*/
+@import url('assets/loginTheme/LightBlue.css');
+

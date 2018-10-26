@@ -1,0 +1,40 @@
+<div #layoutWrapper class="layout-wrapper" [ngClass]="{'menu-layout-static': !isOverlay(),
+        'menu-layout-overlay': isOverlay(),
+        'layout-menu-overlay-active': overlayMenuActive,
+        'menu-layout-horizontal': isHorizontal(),
+        'layout-menu-static-inactive': staticMenuDesktopInactive,
+        'layout-menu-static-active': staticMenuMobileActive}">
+
+  <app-topbar></app-topbar>
+  <div class="layout-menu-container" (click)="onMenuClick($event)">
+    <div #layoutMenuScroller class="nano">
+      <div class="nano-content menu-scroll-content">
+        <div class="search-input">
+          <input type="text" placeholder="Search"/>
+          <i class="fa fa-search"></i>
+        </div>
+        <app-menu [reset]="resetMenu"></app-menu>
+        <div class="layout-menu-footer">
+          <span class="layout-menu-footer-title">Tasks Overview</span>
+
+          <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+          Today
+
+          <p-progressBar [value]="80" [showValue]="false"></p-progressBar>
+          Overall
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout-main">
+    <!-- 20180720 jins 新控制台集成SmartBI 添加高度控制-->
+    <div class="layout-main-content" style="overflow: auto;" [ngStyle]="{'height': mainHeight}">
+      <router-outlet></router-outlet>
+      <!--<app-footer></app-footer>-->
+    </div>
+  </div>
+
+  <div class="layout-mask"></div>
+
+</div>

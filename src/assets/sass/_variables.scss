@@ -1,0 +1,64 @@
+/* Common */
+$fontFamily:"Open Sans","Helvetica Neue",sans-serif;
+$fontSize:14px;
+$textColor:#5f666c;
+$textSecondaryColor:lighten($textColor,10%);
+$borderRadius:2px;
+$dividerColor:#c9cdd2;
+$iconWidth:16px;
+$iconHeight:16px;
+$transitionDuration:.3s;
+$inputInvalidBorderColor:#f06364;
+
+/* Headers */
+$headerPadding:.5em 1em;
+$headerBgColor:#2d353c;
+$headerTextColor:#ffffff;
+$headerHoverBgColor:#444d56;
+
+/* Contents */
+$contentPadding:.5em 1em;
+$contentBorderColor:#c9cdd2;
+$contentBgColor:#ffffff;
+
+/* Forms */
+$inputPadding:.35em;
+$inputBgColor:#ffffff;
+$inputBorderColor:#a8acb1;
+$inputHoverBorderColor:#5f666c;
+$inputInvalidBorderColor:#f06364;
+$inputGroupAddonBgColor:#e6e6e6;
+
+$buttonTextColor: #ffffff;
+
+/* List Items */
+$listItemPadding:.5em 1em;
+$listItemHoverBgColor:#f0f3f5;
+$listItemHoverTextColor:#5f666c;
+
+/* Messages */
+$infoMessageBgColor:#2f8ee5;
+$infoMessageTextColor:#ffffff;
+$warnMessageBgColor:#f1b263;
+$warnMessageTextColor:#ffffff;
+$errorMessageBgColor:#f06364;
+$errorMessageTextColor:#ffffff;
+$successMessageBgColor:#57c279;
+$successMessageTextColor:#ffffff;
+
+/* Horizontal Menu */
+$hmenuBGColor:#f0f3f5;
+
+/* Misc */
+$maskBgColor:#424242;
+
+/* Predefined Colors */
+$turquoise:#00acac;
+$blue:#2f8ee5;
+$orange:#efa64c;
+$purple:#6c76af;
+$pink:#f16383;
+$lightBlue:#63c9f1;
+$green:#57c279;
+$deepPurple:#7e57c2;
+$black:#2d353c;

@@ -1,0 +1,100 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-3">
+    <p-tree [value]="files2" selectionMode="single" [(selection)]="selectedFile2"
+            [contextMenu]="cm" (onNodeSelect)="nodeSelect($event)"
+            [style]="{'max-height':'400px','overflow':'auto'}">
+    </p-tree>
+  </div>
+
+  <div class="ui-g-12 ui-md-9">
+
+    <div class="ui-grid-row">
+      <p-panel header="菜单信息项信息" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}"
+      >
+        <div class="ui-grid-row" style="margin-bottom: 10px">
+          <div class="ui-grid-col-2"><label for="title">菜单标题</label></div>
+          <div class="ui-grid-col-10"><input pInputText id="title" [(ngModel)]="menuForm.title"></div>
+        </div>
+        <div class="ui-grid-row" style="margin-bottom: 10px">
+          <div class="ui-grid-col-2"><label for="url">URL</label></div>
+          <div class="ui-grid-col-10"><input pInputText id="url" [(ngModel)]="menuForm.url"></div>
+        </div>
+        <div class="ui-grid-row" style="margin-bottom: 10px">
+          <div class="ui-grid-col-2"><label for="component">组件名称</label></div>
+          <div class="ui-grid-col-10"><input pInputText id="component" [(ngModel)]="menuForm.component"></div>
+        </div>
+        <div class="ui-grid-row" style="margin-bottom: 10px">
+          <div class="ui-grid-col-2"><label for="parameters">菜单参数</label></div>
+          <div class="ui-grid-col-10"><input pInputText id="parameters" [(ngModel)]="menuForm.parameters"></div>
+        </div>
+        <div class="ui-grid-row" style="margin-bottom: 10px">
+          <div class="ui-grid-col-2"><label for="order_num">菜单序号</label></div>
+          <div class="ui-grid-col-10"><input pInputText id="order_num" [(ngModel)]="menuForm.order_num"></div>
+        </div>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <p-dataTable [value]="cars" selectionMode="single"
+                   [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)"
+                   [paginator]="true" rows="15" [responsive]="true"
+                   [resizableColumns]="true"
+      >
+        <p-header>菜单项信息</p-header>
+        <!--
+        <p-column field="id" header="菜单ID" [sortable]="true"></p-column>
+        -->
+        <p-column field="title" header="菜单标题" [style]="{'width':'20%'}"></p-column>
+        <p-column field="order_num" header="菜单序号" [sortable]="true" [style]="{'width':'10%'}"></p-column>
+        <p-column field="component" header="组件名称" [style]="{'width':'10%'}"></p-column>
+        <p-column field="parameters" header="菜单参数" [style]="{'width':'20%'}"></p-column>
+        <p-column field="url" header="url" [style]="{'width':'40%'}"></p-column>
+        <!--
+        <p-column field="target" header="目标应用" [sortable]="true"></p-column>
+        -->
+        <!--
+        <p-column field="root_id" header="根目录ID" [sortable]="true"></p-column>
+
+        <p-footer>
+          <div class="ui-helper-clearfix" style="width:100%">
+            <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"
+                    label="Add"></button>
+          </div>
+        </p-footer>
+        -->
+      </p-dataTable>
+    </div>
+
+  </div>
+</div>
+
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+<button type="text" pButton label="设置" (click)="test()"></button>
+<button type="text" pButton label="读菜单" (click)="readMenu()"></button>
+
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="car">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="vin">Vin</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="vin" [(ngModel)]="car.vin"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="year">Year</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="year" [(ngModel)]="car.year"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="brand">Brand</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="car.brand"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="color">Color</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="car.color"/></div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+      <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>

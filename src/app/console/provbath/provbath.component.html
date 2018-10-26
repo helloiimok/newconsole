@@ -1,0 +1,53 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-6">
+    <p-panel header="待选菜单树" [toggleable]="true"
+             [style]="{'margin-bottom':'10px'}">
+      <p-tree [value]=this.menus selectionMode="single" [(selection)]="selectedMenus"
+              (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnSelect($event)" selectionMode="checkbox"
+              (onNodeExpand)="nodeExpand($event)"
+              [style]="{'max-height':'400px','overflow':'auto'}">
+      </p-tree>
+    </p-panel>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+    <p-panel header="批量授权选项" [toggleable]="true"
+             [style]="{'margin-bottom':'10px'}">
+      <div class="ui-grid-row">
+        <div class="ui-g" style="width:250px;margin-bottom:10px">
+          <div class="ui-g-12">
+            <p-checkbox name="group2" value="f_sheng" label="省批量授权" [(ngModel)]="selectedValues"
+                        inputId="sheng"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group2" value="f_shi" label="市批量授权" [(ngModel)]="selectedValues"
+                        inputId="shi"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group2" value="f_xian" label="县批量授权" [(ngModel)]="selectedValues"
+                        inputId="xian"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group2" value="f_xiang" label="乡批量授权" [(ngModel)]="selectedValues"
+                        inputId="xiang"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group2" [disabled]="true" value="f_cun" label="村批量授权" [(ngModel)]="selectedValues"
+                        inputId="cun"></p-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-g-12" style="width:100%;margin-bottom:10px">
+          <div class="ui-g-12 ui-md-8">
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button type="button" pButton icon="fa-save" (click)="saveMenu()" label="授权"></button>
+          </div>
+          <div class="ui-g-12 ui-md-2">
+            <button type="button" pButton icon="fa-save" (click)="delMenu()" label="撤销"></button>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+</div>

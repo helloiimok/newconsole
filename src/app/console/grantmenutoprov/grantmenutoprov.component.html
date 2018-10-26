@@ -1,0 +1,47 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-6">
+    <p-panel header="菜单树信息" [toggleable]="true"
+             [style]="{'margin-bottom':'10px'}"
+    >
+      <p-tree [value]=this.files2 selectionMode="single" [(selection)]="selectedFile2"
+              (onNodeSelect)="nodeSelect($event)"
+              [style]="{'max-height':'400px','overflow':'auto'}">
+      </p-tree>
+    </p-panel>
+  </div>
+
+  <div class="ui-g-12 ui-md-6">
+
+    <div class="ui-grid-row">
+      <p-panel header="各省控制台信息" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}"
+      >
+        <p-dataTable [value]="provs" [(selection)]="selectProvs" dataKey="name"
+                     (onRowSelect)="handleRowSelect($event)"
+                     (onRowUnselect)="handleRowUnSelect($event)"
+
+        >
+          <p-column [style]="{'width':'46px'}" selectionMode="multiple"></p-column>
+          <p-column field="name" header="省"></p-column>
+          <p-column field="description" header="角色"></p-column>
+        </p-dataTable>
+      </p-panel>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-6"><label>&nbsp;</label>
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp;</label></div>
+      <div class="ui-grid-col-2">
+        <button type="text" pButton label="读菜单" (click)="readMenu()"></button>
+      </div>
+      <div class="ui-grid-col-1"><label>&nbsp; </label></div>
+      <div class="ui-grid-col-2">
+        <button type="text" pButton label="保存" (click)="saveAuth()"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

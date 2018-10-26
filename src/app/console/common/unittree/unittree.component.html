@@ -1,0 +1,8 @@
+<p-panel header="工作组权限树" [toggleable]="true"
+         [style]="{'margin-bottom':'10px','margin-top':'10px'}">
+  <p-tree [value]=this.roles selectionMode="checkbox"  [(selection)]="selRoles"
+          (onNodeExpand)="nodeExpand($event)" (onNodeSelect)="nodeSelect($event)"
+          (onNodeUnselect)="nodeUnselect($event)"
+          [style]="{'max-height':'400px','overflow':'auto'}">
+  </p-tree>
+</p-panel>

@@ -1,0 +1,52 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12 ui-md-5">
+    <div class="ui-grid-row">
+      <p-panel header="机构树" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-tree [value]=this.roles selectionMode="single" [(selection)]="selRoles"
+                (onNodeExpand)="nodeExpand($event)" (onNodeSelect)="nodeSelect($event)"
+                [style]="{'max-height':'400px','overflow':'auto'}">
+        </p-tree>
+      </p-panel>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-7">
+    <div class="ui-grid-row">
+      <p-panel header="账户信息" [toggleable]="true"
+               [style]="{'margin-bottom':'10px'}">
+        <p-dataTable [value]="roleUsers"
+                     [paginator]="false" rows="15" [responsive]="true"
+                     [resizableColumns]="true" [editable]="true"
+                     [style]="{'max-height':'300px','overflow':'auto'}"
+                     (onEditComplete)="editChange($event)"
+
+        >
+          <p-column field="no" header="序号" [style]="{'width':'50px'}"></p-column>
+          <p-column [style]="{'width':'38px'}" selectionMode="single" dataKey="no"></p-column>
+          <p-column field="account" header="登录账户" [editable]="true" [style]="{'width':'100px'}"></p-column>
+          <p-column field="name" header="账户名称" [editable]="true" [style]="{'width':'120px'}"></p-column>
+          <p-column field="password" header="密码" [style]="{'width':'100px'}"></p-column>
+          <p-column styleClass="col-button" [style]="{'width':'80px'}">
+            <ng-template pTemplate="header">
+              <!--<button type="button" pButton icon="fa-refresh"></button>-->
+              <label>操作</label>
+            </ng-template>
+            <ng-template let-user="rowData" pTemplate="body">
+              <button type="button" pButton (click)="delBindUser(user)" label="删除" icon=""></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </p-panel>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-10">
+        </div>
+        <div class="ui-grid-col-1" style="margin-right: 10px">
+          <button type="button" pButton (click)="addUser()" label="新增" icon=""></button>
+        </div>
+        <div class="ui-grid-col-1">
+          <button type="button" pButton (click)="saveUser()" label="保存" icon=""></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
