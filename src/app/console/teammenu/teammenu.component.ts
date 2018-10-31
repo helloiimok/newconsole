@@ -44,6 +44,7 @@ export class TeammenuComponent implements OnInit {
     // 组长、队员 的role_id = mobile_pc_group
     // 队长         role_id = mobile_pc_team
     // 片长         role_id = mobile_pc_district
+    // 省         role_id = mobile_pc_prov
     // 国扶办       role_id = mobile_pc_gfb
     this.route.params.subscribe((params: ParamMap) => {
       // console.log('路由入参：' + params['menuParam']);
@@ -63,6 +64,9 @@ export class TeammenuComponent implements OnInit {
         role_id = 'mobile_pc_district';
       }
       if (parm.indexOf('4') > 0) {
+        role_id = 'mobile_pc_prov' ;
+      }
+      if (parm.indexOf('9') > 0) {
         role_id = 'mobile_pc_gfb';
       }
       this.role_id = role_id;

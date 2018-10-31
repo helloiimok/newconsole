@@ -4,14 +4,14 @@ import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/primeng';
 import {AppComponent} from './app.component';
-import {GridCrduComponent} from "./sungkdemo/view/grid-crdu/grid-crdu.component";
-import {MainConsoleComponent} from "./main/main-console.component";
-import {TeammenuComponent} from "./console/teammenu/teammenu.component";
-import {LoginService} from "../platform/main/login/login.service";
-import {TeamauthoritydistComponent} from "./console/teamauthoritydist/teamauthoritydist.component";
-import {DialogService} from "../platform/dialog/dialog.service";
-import {TeamauthoritygroupComponent} from "./console/teamauthoritygroup/teamauthoritygroup.component";
-import {SystemSetting} from "../platform/system-setting/system-setting";
+import {GridCrduComponent} from './sungkdemo/view/grid-crdu/grid-crdu.component';
+import {MainConsoleComponent} from './main/main-console.component';
+import {TeammenuComponent} from './console/teammenu/teammenu.component';
+import {LoginService} from '../platform/main/login/login.service';
+import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthoritydist.component';
+import {DialogService} from '../platform/dialog/dialog.service';
+import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
+import {SystemSetting} from '../platform/system-setting/system-setting';
 
 @Component({
   selector: 'app-menu',
@@ -45,11 +45,11 @@ export class AppMenuComponent implements OnInit {
     //         {label: '批量授权', icon: 'fa fa-fw fa-columns', routerLink: ['/main/ProvbathComponent']},
     //       ];
     // }
-    if ((this.loginService.getUserAccount() == 'fpbadmin' || this.loginService.getUserAccount().indexOf('admin') >= 0)
+    if ((this.loginService.getUserAccount() === 'fpbadmin' || this.loginService.getUserAccount().indexOf('admin') >= 0)
     // && this.sys.isOldConsole
     ) {
       if (this.sys.isOldConsole) {
-        if (this.loginService.getUserAccount() == 'fpbadmin') {
+        if (this.loginService.getUserAccount() === 'fpbadmin') {
           this.model = [
             {
               label: '菜单管理', icon: 'fa fa-fw fa-sitemap',
@@ -80,37 +80,42 @@ export class AppMenuComponent implements OnInit {
 
       } else {
         // fpbadmin 考核评估司登录
-        if (this.loginService.getUserAccount() == 'fpbadmin') {
+        if (this.loginService.getUserAccount() === 'fpbadmin') {
           this.model = [
             {
               label: '考核评估司', icon: 'fa fa-fw fa-sitemap',
               items: [
+                {label: '菜单管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/MenumanageComponent']},
                 {
                   label: '用户角色管理',
                   icon: 'fa fa-fw fa-columns',
                   routerLink: ['/main/TeamrolemanageComponent', '{"type":"khpgs"}']
                 },
                 {
-                  label: '片区授权管理', icon: 'fa fa-fw fa-columns',
+                  label: '省授权管理', icon: 'fa fa-fw fa-columns',
                   routerLink: ['/main/TeamauthorityComponent']
                 },
                 // {label: '工作队授权管理',icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthoritydistComponent'],},
                 // {label: '工作组授权管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritygroupComponent']},
                 {
                   label: '工作组授权菜单', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeammenuComponent', '{level:"0,1"}']
+                  routerLink: ['/main/TeammenuComponent', '{"level":"0,1"}']
                 },
                 {
                   label: '工作队授权菜单', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeammenuComponent', '{level:"2"}']
+                  routerLink: ['/main/TeammenuComponent', '{"level":"2"}']
                 },
                 {
                   label: '片区授权菜单', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeammenuComponent', '{level:"3"}']
+                  routerLink: ['/main/TeammenuComponent', '{"level":"3"}']
+                },
+                {
+                  label: '省授权菜单', icon: 'fa fa-fw fa-columns',
+                  routerLink: ['/main/TeammenuComponent', '{"level":"4"}']
                 },
                 {
                   label: '国办授权菜单', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeammenuComponent', '{level:"4"}']
+                  routerLink: ['/main/TeammenuComponent', '{"level":"9"}']
                 },
                 {
                   label: '测试', icon: 'fa fa-fw fa-columns',
@@ -138,7 +143,7 @@ export class AppMenuComponent implements OnInit {
             }
           ];
         }
-        if (this.loginService.getUserAccount() == 'ddjc_fpbadmin') {
+        if (this.loginService.getUserAccount() === 'ddjc_fpbadmin') {
 
           this.model = [
             {label: '菜单管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/MenumanageComponent']},
@@ -178,7 +183,9 @@ export class AppMenuComponent implements OnInit {
           ];
 
         }
-        if (this.loginService.getUserAccount().match("^99[0-9]{0}admin")) {
+        // 省控制台
+        if (this.loginService.getUserAccount().match('^[0-9]{2}admin') && this.loginService.getUserAccount() != '99admin') {
+          debugger;
           this.model = [
             {
               label: '考核评估司', icon: 'fa fa-fw fa-sitemap',
@@ -186,24 +193,23 @@ export class AppMenuComponent implements OnInit {
                 {
                   label: '用户角色管理',
                   icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeamrolemanageComponent', '{label:"test"}']
+                  routerLink: ['/main/TeamrolemanageComponent', '{ "label" : "test"} ']
                 },
                 {
-                  label: '片区授权管理', icon: 'fa fa-fw fa-columns',
+                  label: '团区域授权管理', icon: 'fa fa-fw fa-columns',
                   routerLink: ['/main/TeamauthorityComponent']
                 },
-                // {label: '工作队授权管理',icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthoritydistComponent'],},
-                // {label: '工作组授权管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritygroupComponent']},
-                {
-                  label: '工作组授权菜单', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeammenuComponent']
-                },
+                // {
+                //   label: '工作组授权菜单', icon: 'fa fa-fw fa-columns',
+                //   routerLink: ['/main/TeammenuComponent']
+                // },
               ]
             },
           ];
         }
+
         // 片区控制台菜单
-        if (this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+        if (this.loginService.getUserAccount().match('^[0-9]{4}admin')) {
           this.model = [
             {
               label: '考核评估司', icon: 'fa fa-fw fa-sitemap',
@@ -211,25 +217,45 @@ export class AppMenuComponent implements OnInit {
                 {
                   label: '用户角色管理',
                   icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeamrolemanageComponent', '{label:"test"}'],
+                  routerLink: ['/main/TeamrolemanageComponent', '{"type":"khpgs"}'],
                 },
                 // {label: '片区授权管理', icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthorityComponent']},
-                {label: '工作队授权管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritydistComponent'],},
+                {label: '工作队区域授权管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritydistComponent'], },
                 // {label: '工作组授权菜单', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritygroupComponent']},
                 // {label: '工作组授权菜单', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeammenuComponent']},
               ]
             },
           ];
         }
+
+        // 片区控制台菜单
+        if (this.loginService.getUserAccount().match('^[0-9]{6}admin')) {
+          this.model = [
+            {
+              label: '考核评估司', icon: 'fa fa-fw fa-sitemap',
+              items: [
+                {
+                  label: '用户角色管理',
+                  icon: 'fa fa-fw fa-columns',
+                  routerLink: ['/main/TeamrolemanageComponent', '{"type":"khpgs"}'],
+                },
+                // {label: '片区授权管理', icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthorityComponent']},
+                // {label: '工作组区域授权管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritydistComponent'], },
+                {label: '工作组授权菜单', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeamauthoritygroupComponent']},
+                // {label: '工作组授权菜单', icon: 'fa fa-fw fa-columns', routerLink: ['/main/TeammenuComponent']},
+              ]
+            },
+          ];
+        }
         // 对控制台菜单
-        if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+        if (this.loginService.getUserAccount().match('^[0-9]{8}admin')) {
           this.model = [
             {
               label: '考核评估司', icon: 'fa fa-fw fa-sitemap',
               items: [
                 {
                   label: '用户角色管理', icon: 'fa fa-fw fa-columns',
-                  routerLink: ['/main/TeamrolemanageComponent', '{label:"test"}']
+                  routerLink: ['/main/TeamrolemanageComponent', '{"label":"test"}']
                 },
                 // {label: '片区授权管理', icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthorityComponent']},
                 // {label: '工作队授权管理',icon: 'fa fa-fw fa-columns',routerLink: ['/main/TeamauthoritydistComponent'],},

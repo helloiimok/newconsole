@@ -23,8 +23,8 @@
         >
           <p-column field="no" header="序号" [style]="{'width':'50px'}"></p-column>
           <p-column [style]="{'width':'38px'}" selectionMode="single" dataKey="no"></p-column>
-          <p-column field="account" header="登录账户" [editable]="true" [style]="{'width':'100px'}"></p-column>
-          <p-column field="name" header="账户名称" [editable]="true" [style]="{'width':'120px'}"></p-column>
+          <p-column field="account" header="登录账户" [editable]="true" [style]="{'width':'100px'}" [filter]="true" filterMatchMode="contains"></p-column>
+          <p-column field="name" header="账户名称" [editable]="true" [style]="{'width':'120px'}" [filter]="true" filterMatchMode="contains"></p-column>
           <p-column field="password" header="密码" [style]="{'width':'100px'}"></p-column>
           <p-column styleClass="col-button" [style]="{'width':'80px'}">
             <ng-template pTemplate="header">

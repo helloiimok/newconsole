@@ -2,23 +2,24 @@ import {Routes, RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 
 import {ImokTestComponent} from './sungkdemo/view/imok-test/imok-test.component';
-import {TableDynamicComponent} from "./sungkdemo/view/table-dynamic/table-dynamic.component";
-import {GridCrduComponent} from "./sungkdemo/view/grid-crdu/grid-crdu.component";
-import {LoginComponent} from "../platform/main/login/login.component";
-import {MenumanageComponent} from "./console/menumanage/menumanage.component";
-import {RolemanageComponent} from "./console/rolemanage/rolemanage.component";
-import {GrantmenutoprovComponent} from "./console/grantmenutoprov/grantmenutoprov.component";
-import {TeamrolemanageComponent} from "./console/teamrolemanage/teamrolemanage.component";
-import {TeamauthorityComponent} from "./console/teamauthority/teamauthority.component";
-import {GrantMenuToProvNewComponent} from "./console/grant-menu-to-prov-new/grant-menu-to-prov-new.component";
-import {UsermanageComponent} from "./console/usermanage/usermanage.component";
-import {MainConsoleComponent} from "./main/main-console.component";
-import {TeammenuComponent} from "./console/teammenu/teammenu.component";
-import {ProvbathComponent} from "./console/provbath/provbath.component";
-import {TeamauthoritydistComponent} from "./console/teamauthoritydist/teamauthoritydist.component";
-import {TeamauthoritygroupComponent} from "./console/teamauthoritygroup/teamauthoritygroup.component";
-import {Teammenu2Component} from "./console/teammenu-2/teammenu-2.component";
-import {SmartbiComponent} from "../platform/main/smartbi/smartbi.component";
+import {TableDynamicComponent} from './sungkdemo/view/table-dynamic/table-dynamic.component';
+import {GridCrduComponent} from './sungkdemo/view/grid-crdu/grid-crdu.component';
+import {LoginComponent} from '../platform/main/login/login.component';
+import {MenumanageComponent} from './console/menumanage/menumanage.component';
+import {RolemanageComponent} from './console/rolemanage/rolemanage.component';
+import {GrantmenutoprovComponent} from './console/grantmenutoprov/grantmenutoprov.component';
+import {TeamrolemanageComponent} from './console/teamrolemanage/teamrolemanage.component';
+import {TeamauthorityComponent} from './console/teamauthority/teamauthority.component';
+import {GrantMenuToProvNewComponent} from './console/grant-menu-to-prov-new/grant-menu-to-prov-new.component';
+import {UsermanageComponent} from './console/usermanage/usermanage.component';
+import {MainConsoleComponent} from './main/main-console.component';
+import {TeammenuComponent} from './console/teammenu/teammenu.component';
+import {ProvbathComponent} from './console/provbath/provbath.component';
+import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthoritydist.component';
+import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
+import {Teammenu2Component} from './console/teammenu-2/teammenu-2.component';
+import {SmartbiComponent} from '../platform/main/smartbi/smartbi.component';
+import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
 
 
 export const routes: Routes = [
@@ -59,6 +60,8 @@ export const routes: Routes = [
       {path: 'TeamauthoritydistComponent', component: TeamauthoritydistComponent},
       {path: 'TeamauthoritygroupComponent', component: TeamauthoritygroupComponent},
       {path: 'Teammenu2Component/:menuParam', component: Teammenu2Component},
+      {path: 'RoleUserManageComponent', component: RoleUserManageComponent},
+
       // 20180720 jins 新控制台集成SmartBI
       {path: 'smartbi/:param', component: SmartbiComponent},
 

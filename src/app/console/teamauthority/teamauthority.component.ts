@@ -64,8 +64,16 @@ export class TeamauthorityComponent implements OnInit {
     debugger;
 
     let str_t = Symbol(this.loginService.getUserAccount());
-    // 99admin匹配情况
-    if (this.loginService.getUserAccount().match("^99[0-9]{0}admin")) {
+
+    if (this.loginService.getUserAccount() === 'fpbadmin') {
+      // this.dialogService.info('省');
+      if (m.data['aar033'] != '20') {
+        this.dialogService.info('只能增加省一级的权限，请选择到省！');
+        return;
+      }
+    }
+    // xxadmin 省登录匹配情况
+    if (this.loginService.getUserAccount().match("^[0-9]{2}admin")) {
       // this.dialogService.info('省');
       if (m.data['aar033'] != '20') {
         this.dialogService.info('只能增加省一级的权限，请选择到省！');
@@ -73,14 +81,14 @@ export class TeamauthorityComponent implements OnInit {
       }
     }
     // 匹配99xxadmin 片区
-    if (this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+    if (this.loginService.getUserAccount().match("^[0-9]{4}admin")) {
       if (m.data['aar033'] != '50') {
         this.dialogService.info('只能增加县一级的权限，请选择到县！');
         return;
       }
     }
     // 匹配 队长
-    if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    if (this.loginService.getUserAccount().match("^[0-9]{6}admin")) {
       if (m.data['aar033'] != '70') {
         this.dialogService.info('只能增加村一级的权限，请选择到村！');
         return;
@@ -106,10 +114,14 @@ export class TeamauthorityComponent implements OnInit {
     data1['resourceType'] = 'mobile';
     data1['authorityType'] = 'mobile';
     data1['opt'] = 'add';
-    if (this.loginService.getUserAccount().match("^99[0-9]{0}admin") ||
-      this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+    data1['role_type'] = this.selectedRole['role_type'];
+    if (this.loginService.getUserAccount() === 'fpbadmin' ||
+      this.loginService.getUserAccount().match("^[0-9]{2}admin") ||
+      this.loginService.getUserAccount().match("^[0-9]{4}admin") ||
+      this.loginService.getUserAccount().match("^[0-9]{6}admin")
+    ) {
       data1['roleType'] = 'adminRole';
-    } else if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    } else if (this.loginService.getUserAccount().match("^[0-9]{8}admin")) {
       data1['roleType'] = 'busiRole';
     }
     const data = {
@@ -143,6 +155,7 @@ export class TeamauthorityComponent implements OnInit {
 
 //  ////////////////////////////////////第二个树的操作
   initTreeFir(): void {
+    debugger;
     let successFunc1: any = (response => {
       debugger;
       let res = response.body.resultList.data;
@@ -153,7 +166,24 @@ export class TeamauthorityComponent implements OnInit {
       this.queryRoleByCreater(this.loginService.getUserAccount());
 
     });
-    let m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount()};
+
+    let role_type:string = '';
+    if (this.loginService.getUserAccount().match('^[0-9]{0}admin')) {
+      role_type = '0';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{2}admin')) {
+      role_type = '20';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{4}admin')) {
+      role_type = '30';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{6}admin')) {
+      role_type = '40';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{8}admin')) {
+      role_type = '50';
+    }
+    let m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount(),role_type:role_type};
     this.conService.queryAa11Gfb(m_data, successFunc1);
 
   }

@@ -7,11 +7,23 @@
                    (onRowSelect)="onRowSelect($event)" dataKey="no" (onRowUnselect)="teamUnSelect($event)"
                    [editable]="true" rows="15"
                    (onEditComplete)="onChangeTeam($event)"
+
                    [style]="{'max-height':'350px','overflow':'auto'}">
         <p-column field="no" header="序号"  [style]="{'width':'50px'}"></p-column>
         <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
-        <p-column field="name" header="组名称" [editable]="true"></p-column>
+        <p-column field="name" header="组名称" [editable]="true" [filter]="true" filterMatchMode="contains"></p-column>
         <p-column field="description" header="组工作内容描述" [editable]="true"></p-column>
+        <p-column field="role_type" header="角色级别" [editable]="true" [style]="{'width':'80px'}">
+          <ng-template let-col let-car="rowData" pTemplate="body">
+            {{this.conService.getOptionLabel(this.role_types,car[col.field])}}
+          </ng-template>
+          <ng-template let-col let-car="rowData" pTemplate="editor">
+            <p-dropdown [(ngModel)]="car[col.field]" [options]=this.role_types [autoWidth]="false"
+                        [style]="{'width':'100%'}" required="true" appendTo="body">
+
+            </p-dropdown>
+          </ng-template>
+        </p-column>
         <p-column styleClass="col-button">
           <ng-template pTemplate="header">
             <button type="button" pButton icon="fa-refresh"></button>
@@ -48,7 +60,7 @@
         <p-column field="no" header="序号"  [style]="{'width':'50px'}">
         </p-column>
         <!--<p-column [style]="{'width':'46px'}" selectionMode="multiple"></p-column>-->
-        <p-column field="account" header="账号"  [editable]="true">
+        <p-column field="account" header="账号"  [editable]="true" [filter]="true" filterMatchMode="contains">
         </p-column>
         <p-column field="name" header="账户名称" [editable]="true"></p-column>
         <p-column field="password" header="密码" [editable]="true">
@@ -105,5 +117,5 @@
 
 </div>
 <!--<p-dialog header="账号编辑" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">-->
-  <!--<app-newuser></app-newuser>-->
+<!--<app-newuser></app-newuser>-->
 <!--</p-dialog>-->

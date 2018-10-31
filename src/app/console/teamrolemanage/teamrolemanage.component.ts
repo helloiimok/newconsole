@@ -21,7 +21,7 @@ export class TeamrolemanageComponent implements OnInit {
   // 二级代码
   sexs: any[];
   opts: any[];
-
+  role_types : any[];
   constructor(private consoleRoleService: ConsoleRoleService,
               private  conService: ConsoleService,
               private  loginService: LoginService,
@@ -33,6 +33,16 @@ export class TeamrolemanageComponent implements OnInit {
       new CodeName('1', '男'),
       new CodeName('2', '女'),
       new CodeName('9', '其他'),
+    ];
+
+    this.role_types = [
+      new CodeName('', '请选择'),
+      new CodeName('0', '国扶办'),
+      new CodeName('20', '省'),
+      new CodeName('30', '编辑公司(片)'),
+      new CodeName('40', '队长'),
+      new CodeName('50', '组'),
+      // new CodeName('0', '国扶办'),
     ];
     // if(this.loginService.getUserAccount().indexOf('ddjc') > 0 ){
     //
@@ -68,7 +78,8 @@ export class TeamrolemanageComponent implements OnInit {
           new CodeName('1', '组长'),
           new CodeName('2', '队长'),
           new CodeName('3', '片长'),
-          new CodeName('4', '国扶办'),
+          new CodeName('4', '省'),
+          new CodeName('9', '国扶办'),
         ];
       }
 
@@ -93,6 +104,7 @@ export class TeamrolemanageComponent implements OnInit {
    * @param {string} account
    */
   queryRoleByCreater = (account: string) => {
+    debugger;
     const successFunc: any = (
       response => {
         // 成功回调
@@ -102,7 +114,7 @@ export class TeamrolemanageComponent implements OnInit {
         this.roles = res;
       });
 
-    this.consoleRoleService.queryRoleByCreaterMobile({create_by: account}, successFunc);
+    this.consoleRoleService.queryRoleByCreaterMobile({create_by: account,role_type:this.selectedRole['role_type']}, successFunc);
   }
 
   onRowSelect = (event) => {
@@ -150,38 +162,6 @@ export class TeamrolemanageComponent implements OnInit {
   }
 
   saveTeam = () => {
-    debugger;
-    if (this.roles.length == 0) {
-      this.dialogService.info('没有选择的数据，无需保存！');
-      return;
-    }
-    for (let i in this.roles) {
-      if (this.roles[i].name == '') {
-        this.dialogService.info('组名称为必录项，必须填写！');
-        return;
-      }
-    }
-    let changeData: any[] = [];
-    this.roles.forEach(function (value, i) {
-      if (value.opt == 'add') {
-        changeData.push(value);
-      } else {
-        if (value['modify'] && value['modify'] == '1') {
-          value['opt'] = 'update';
-          changeData.push(value);
-        }
-      }
-    });
-    if (changeData.length == 0) {
-      this.dialogService.info('没有修改的数据，无需保存！');
-      return;
-    }
-    const data = {
-      options: {opt: 'modifydata'},
-      changeData: changeData,
-      adminRoleId: this.loginService.getUnitCode(),
-      type: 'mobile'
-    }
     const successFunc = (response => {
       debugger;
       if (response.error) {
@@ -206,6 +186,46 @@ export class TeamrolemanageComponent implements OnInit {
       this.dialogService.success('保存成功');
 
     });
+    debugger;
+    if (this.roles.length == 0) {
+      this.dialogService.info('没有选择的数据，无需保存！');
+      return;
+    }
+    for (let i in this.roles) {
+      if (this.roles[i].name == '') {
+        this.dialogService.info('组名称为必录项，必须填写！');
+        return;
+      }
+    }
+    let changeData: any[] = [];
+    this.roles.forEach(function (value, i) {
+      if (value.opt == 'add') {
+        changeData.push(value);
+      } else {
+        if (value['modify'] && value['modify'] == '1') {
+          value['opt'] = 'update';
+          changeData.push(value);
+        }
+      }
+    });
+
+    if (this.selectedRole) {
+      this.selectedRole['opt'] ='update';
+      changeData.push(this.selectedRole );
+    }else{
+      if (changeData.length == 0) {
+        this.dialogService.info('没有修改的数据，无需保存,如果是单行修改，需要点选单选框');
+        return;
+      }
+
+    }
+    const data = {
+      options: {opt: 'modifydata'},
+      changeData: changeData,
+      adminRoleId: this.loginService.getUnitCode(),
+      type: 'mobile'
+    }
+
     this.conService.saveRole(data, successFunc);
   }
   delTeam = (team: any) => {

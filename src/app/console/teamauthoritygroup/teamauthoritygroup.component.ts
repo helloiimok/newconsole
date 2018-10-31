@@ -64,23 +64,9 @@ export class TeamauthoritygroupComponent implements OnInit {
     debugger;
 
     let str_t = Symbol(this.loginService.getUserAccount());
-    // 99admin匹配情况
-    if (this.loginService.getUserAccount().match("^99[0-9]{0}admin")) {
-      // this.dialogService.info('省');
-      if (m.data['aar033'] != '20') {
-        this.dialogService.info('只能增加省一级的权限，请选择到省！');
-        return;
-      }
-    }
-    // 匹配99xxadmin 片区
-    if (this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
-      if (m.data['aar033'] != '50') {
-        this.dialogService.info('只能增加县一级的权限，请选择到县！');
-        return;
-      }
-    }
+    // 这个类只能匹配到队长级别，之前的都可以不用判断了
     // 匹配 队长
-    if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    if (this.loginService.getUserAccount().match("^[0-9]{6}admin")) {
       if (m.data['aar033'] != '70') {
         this.dialogService.info('只能增加村一级的权限，请选择到村！');
         return;
@@ -106,16 +92,29 @@ export class TeamauthoritygroupComponent implements OnInit {
     data1['resourceType'] = 'mobile';
     data1['authorityType'] = 'mobile';
     data1['opt'] = 'add';
-    if (this.loginService.getUserAccount().match("^99[0-9]{0}admin") ||
-      this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+    data1['role_type'] = this.selectedRole['role_type'];
+    if (this.loginService.getUserAccount() === 'fpbadmin' ||
+      this.loginService.getUserAccount().match("^[0-9]{2}admin") ||
+      this.loginService.getUserAccount().match("^[0-9]{4}admin")
+    ) {
       data1['roleType'] = 'adminRole';
-    } else if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    } else if (this.loginService.getUserAccount().match("^[0-9]{6}admin")) {
       data1['roleType'] = 'busiRole';
     }
     const data = {
       options: {opt: 'modifydata'},
       changeData: [data1],
     };
+    // if (this.loginService.getUserAccount().match("^99[0-9]{0}admin") ||
+    //   this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+    //   data1['roleType'] = 'adminRole';
+    // } else if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    //   data1['roleType'] = 'busiRole';
+    // }
+    // const data = {
+    //   options: {opt: 'modifydata'},
+    //   changeData: [data1],
+    // };
     this.conService.saveAuthority(data, this.successFuncAuth);
   }
 
@@ -151,7 +150,24 @@ export class TeamauthoritygroupComponent implements OnInit {
       this.roles = this.makeTree(res);
       this.roles[0].expanded = true;
     });
-    let m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount()};
+    let role_type:string = '';
+    if (this.loginService.getUserAccount().match('^[0-9]{0}admin')) {
+      role_type = '0';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{2}admin')) {
+      role_type = '20';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{4}admin')) {
+      role_type = '30';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{6}admin')) {
+      role_type = '40';
+    }
+    if (this.loginService.getUserAccount().match('^[0-9]{8}admin')) {
+      role_type = '50';
+    }
+    let m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount(),role_type:role_type};
+
     this.conService.queryAa11Xian(m_data, successFunc1);
 
   }
@@ -255,7 +271,7 @@ export class TeamauthoritygroupComponent implements OnInit {
 
 //  ////////////////////////////////////第二个树的操作
   initTreeSec(role_id: string): void {
-
+    debugger;
     let successFunc1: any = (response => {
       debugger;
       let res = response.body.resultList.data;
@@ -265,11 +281,11 @@ export class TeamauthoritygroupComponent implements OnInit {
       this.alreadyRoles[0].expanded = true;
     });
     let data = {role_id: role_id};
-    if (this.loginService.getUserAccount().match("^99[0-9]{0}admin")) {
+    if (this.loginService.getUserAccount().match("^[0-9]{2}admin")) {
       this.conService.queryAlreadyAuthority_sheng(data, successFunc1);
-    } else if (this.loginService.getUserAccount().match("^99[0-9]{2}admin")) {
+    } else if (this.loginService.getUserAccount().match("^[0-9]{4}admin")) {
       this.conService.queryAlreadyAuthority_xian(data, successFunc1);
-    } else if (this.loginService.getUserAccount().match("^99[0-9]{4}admin")) {
+    } else if (this.loginService.getUserAccount().match("^[0-9]{6}admin")) {
       this.conService.queryAlreadyAuthority_cun(data, successFunc1);
     }
 

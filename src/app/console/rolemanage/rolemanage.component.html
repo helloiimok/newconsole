@@ -19,7 +19,7 @@
         >
 
           <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
-          <p-column field="account" header="登录账户" [style]="{'width':'100px'}"></p-column>
+          <p-column field="account" header="登录账户" [style]="{'width':'100px'}" [filter]="true" filterMatchMode="contains"></p-column>
           <p-column field="name" header="账户名称" [style]="{'width':'120px'}"></p-column>
           <p-column styleClass="col-button" [style]="{'width':'80px'}">
             <ng-template pTemplate="header">
@@ -48,7 +48,7 @@
 
         >
           <p-column [style]="{'width':'46px'}" selectionMode="single"></p-column>
-          <p-column field="name" header="业务角色名称" [style]="{'width':'20%'}"></p-column>
+          <p-column field="name" header="业务角色名称" [style]="{'width':'20%'}" [filter]="true" filterMatchMode="contains"></p-column>
           <p-column field="description" header="描述信息" [style]="{'width':'30%'}"></p-column>
 
           <p-column styleClass="col-button" [style]="{'width':'10%'}">

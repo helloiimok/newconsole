@@ -1,15 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {TreeNode} from "primeng/primeng";
-import {CarService} from "../../demo/service/carservice";
-import {NodeService} from "../../demo/service/nodeservice";
-import {DialogService} from "../../../platform/dialog/dialog.service";
-import {TestService} from "../../sungkdemo/view/imok-test/testService";
-import {ConsoleService} from "../service/console.service";
-import {ConsoleArraryoperService} from "../service/console.arraryoper.service";
-import {BusiRole} from "./entity/busirole";
-import {UserdialogComponent} from "./dialog/userdialog/userdialog.component";
-import {LoginService} from "../../../platform/main/login/login.service";
-import {ConsoleRoleService} from "../service/console.role.service";
+import {TreeNode} from 'primeng/primeng';
+import {CarService} from '../../demo/service/carservice';
+import {NodeService} from '../../demo/service/nodeservice';
+import {DialogService} from '../../../platform/dialog/dialog.service';
+import {TestService} from '../../sungkdemo/view/imok-test/testService';
+import {ConsoleService} from '../service/console.service';
+import {ConsoleArraryoperService} from '../service/console.arraryoper.service';
+import {UserdialogComponent} from './dialog/userdialog/userdialog.component';
+import {LoginService} from '../../../platform/main/login/login.service';
+import {ConsoleRoleService} from '../service/console.role.service';
+import {BusiRole} from './entity/busirole';
+
 
 @Component({
   selector: 'app-rolemanage',
@@ -46,7 +47,7 @@ export class RolemanageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let m_aa11: any = {aar001: '0', aar009: '国扶办', aaa113: '', aar033: '0'};
+    const m_aa11: any = {aar001: '0', aar009: '国扶办', aaa113: '', aar033: '0'};
     // 设置root菜单
     this.roles = [
       {
@@ -55,53 +56,53 @@ export class RolemanageComponent implements OnInit {
       },
     ];
     //  初始化一级菜单
-    let successFunc1: any = (response => {
-      debugger;
+    const successFunc1: any = (response => {
+      // debugger;
       let res = response.body.resultList.data;
       res = this.conService.transToLowerKeyArray(res);
       if (res.length > 0) {
         this.roles[0].children = [];
-        for (let i in res) {
-          let m_node: TreeNode = {};
+        for (const i in res) {
+          const m_node: TreeNode = {};
           m_node.label = res[i].aar009;
           m_node.data = res[i];
           m_node.children = [{}];
           m_node.expandedIcon = 'fa-folder-open';
           m_node.collapsedIcon = 'fa-folder';
           // m_node.icon = 'fa-file-image-o';
-          m_node.icon = "";
+          m_node.icon = '';
           this.roles[0].children.push(m_node);
         }
       }
       this.roles[0].expanded = true;
     });
 
-    let m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount()};
+    const m_data: any = {aar033: '20', aaa113: '0', account: this.loginService.getUserAccount()};
     this.conService.queryAa11(m_data, successFunc1);
   }
 
 
   nodeExpand(event) {
 
-    let successFunc: any = (response => {
-      debugger;
+    const successFunc: any = (response => {
+      // debugger;
       let res = response.body.resultList.data;
       res = this.conService.transToLowerKeyArray(res);
       if (res.length > 0) {
         event.node.children = [];
-        for (let i in res) {
-          let m_node: TreeNode = {};
+        for (const i in res) {
+          const m_node: TreeNode = {};
           m_node.label = res[i].aar009;
           m_node.data = res[i];
           // noinspection TypeScriptValidateTypes
 
           m_node.expandedIcon = 'fa-folder-open';
           m_node.collapsedIcon = 'fa-folder';
-          if (event.node.data.aar033 == '60') {
+          if (event.node.data.aar033 === '60') {
             m_node.icon = 'fa-file-image-o';
             m_node.children = [];
           } else {
-            m_node.icon = "";
+            m_node.icon = '';
             m_node.children = [{}];
           }
           event.node.children.push(m_node);
@@ -113,13 +114,11 @@ export class RolemanageComponent implements OnInit {
     });
     debugger;
     if (event.node) {
-      //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
-      // this.nodeService.getLazyFiles().then(nodes => event.node.children = nodes);
       const item = event.node.data;
-      if (item.aar033 == '0')
+      if (item.aar033 === '0')
         return;
-      if (item.aar033 == '70') {
-        event.node.icon = "fa-file-image-o";
+      if (item.aar033 === '70') {
+        event.node.icon = 'fa-file-image-o';
         event.node.children = [];
         return;
       } else {
@@ -143,7 +142,7 @@ export class RolemanageComponent implements OnInit {
           case '70':
             break;
         }
-        let m_data: any = {aar033: aar033, aaa113: item.aar001};
+        const m_data: any = {aar033: aar033, aaa113: item.aar001};
         this.conService.queryAa11(m_data, successFunc);
       }
     }
@@ -159,12 +158,12 @@ export class RolemanageComponent implements OnInit {
   }
 
   nodeSelect1 = (event) => {
-    debugger;
+    // debugger;
     const item = event.node.data;
-    let changeData: any[] = [];
+    const changeData: any[] = [];
     this.consoleArraryoperService.queryTreeNode(event.node, changeData, 'add');
-    for (let i in changeData) {
-      let ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
+    for (const i in changeData) {
+      const ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
       if (ind >= 0) {
         this.changeArray.splice(ind, 1);
         changeData[i]['addflg'] = '1';
@@ -180,10 +179,10 @@ export class RolemanageComponent implements OnInit {
   nodeUnSelect1 = (event) => {
     debugger;
     const item = event.node.data;
-    let changeData: any[] = [];
+    const changeData: any[] = [];
     this.consoleArraryoperService.queryTreeNode(event.node, changeData, 'del');
-    for (let i in changeData) {
-      let ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
+    for (const i in changeData) {
+      const ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
       if (ind >= 0) {
         this.changeArray.splice(ind, 1);
         changeData[i]['addflg'] = '-1';
@@ -194,11 +193,11 @@ export class RolemanageComponent implements OnInit {
     }
   }
   queryBusiRole = (unitid: string) => {
-    let successFunc: any = (response => {
+    const successFunc: any = (response => {
       debugger;
       // 每次刷新树节点，初始化this.changeArray
       this.changeArray = [];
-      let res = response.body.resultList.data;
+      const res = response.body.resultList.data;
       this.busiRoles = this.conService.transToLowerKeyArray(res);
       if (this.busiRoles.length > 0) {
         //  默认选中第一行
@@ -218,25 +217,25 @@ export class RolemanageComponent implements OnInit {
    * @param {string} roleid
    */
   initMenu = (roleid: string) => {
-    let successFunc: any = (response => {
+    const successFunc: any = (response => {
       debugger;
       //  显示 角色关联的账号信息
-      let accountList = response.body.accountList.data;
+      const accountList = response.body.accountList.data;
       this.roleUsers = this.conService.transToLowerKeyArray(accountList);
 
       let res = response.body.resultList.data;
       res = this.conService.transToLowerKeyArray(res);
       let menuArray: TreeNode = {};
-      let selectArray: TreeNode[] = [];
+      const selectArray: TreeNode[] = [];
       //  初始化菜单树
       this.menus = [];
-      let menuList: TreeNode[] = [];
+      const menuList: TreeNode[] = [];
       res.forEach(function (value, i) {
-        let nodeMenu: TreeNode = {};
+        const nodeMenu: TreeNode = {};
         nodeMenu['label'] = value['title'];
         nodeMenu['data'] = value;
         nodeMenu['children'] = [];
-        nodeMenu['icon'] = "fa-file-image-o";
+        nodeMenu['icon'] = 'fa-file-image-o';
         nodeMenu['id'] = value['id'];
         // 初始化已选择的菜单
         nodeMenu['checked'] = value['checked']
@@ -244,15 +243,15 @@ export class RolemanageComponent implements OnInit {
           selectArray.push(nodeMenu);
         }
         // 判断id和parent_id
-        if (value['parentid'] != null && value['parentid'] != "") {
+        if (value['parentid'] != null && value['parentid'] != '') {
           menuList.forEach(function (val, i) {
             // 此处只考虑了正序的情况，也就是从根到叶子，如果乱序，那么需要添加else部分的代码，
             // 暂时没有想好，后期可以尝试
             if (val['id'] == value['parentid']) {
               val['children'].push(nodeMenu);
-              val['expandedIcon'] = "fa-folder-open";
-              val['collapsedIcon'] = "fa-folder";
-              val['icon'] = "";
+              val['expandedIcon'] = 'fa-folder-open';
+              val['collapsedIcon'] = 'fa-folder';
+              val['icon'] = '';
             }
             //  返回根节点
             if (val['id'] == 'menuManager') {
@@ -328,7 +327,7 @@ export class RolemanageComponent implements OnInit {
       }
       // 保存成功后也需要初始化this.changeArray = [];
       this.changeArray = [];
-      let res = response.resultList;
+      const res = response.resultList;
       this.busiRoles = this.conService.transToLowerKeyArray(res);
       this.dialogService.success('保存成功');
       this.displayDialog = false;
@@ -346,7 +345,7 @@ export class RolemanageComponent implements OnInit {
     const cancelCallBack = (() => {
       this.dialogService.info('1111');
     });
-    this.dialogService.question("是否执行删除操作？", cancelCallBack);
+    this.dialogService.question('是否执行删除操作？', cancelCallBack);
   }
 
   delTeam1 = (team: any) => {
@@ -376,7 +375,7 @@ export class RolemanageComponent implements OnInit {
       }
       // 保存成功后也需要初始化this.changeArray = [];
       this.changeArray = [];
-      let res = response.resultList;
+      const res = response.resultList;
       this.busiRoles = this.conService.transToLowerKeyArray(res);
       this.dialogService.success('删除成功');
       this.displayDialog = false;
@@ -407,8 +406,8 @@ export class RolemanageComponent implements OnInit {
    * @param $event
    */
   onRowSelect = ($event) => {
-    let item = $event.data;
-    let role_id = item.id;
+    const item = $event.data;
+    const role_id = item.id;
     this.initMenu(role_id);
   }
 
@@ -421,8 +420,8 @@ export class RolemanageComponent implements OnInit {
    */
   saveAuth = () => {
     debugger;
-    let role_id = this.selectedRole['id'];
-    let changeData: any[] = [];
+    const role_id = this.selectedRole['id'];
+    const changeData: any[] = [];
     // this.queryChange(this.menus, changeData);
 
     const data = {
@@ -482,7 +481,7 @@ export class RolemanageComponent implements OnInit {
         return;
       }
       // 保存成功后也需要初始化this.changeArray = [];
-      let tmp: any[] = [...this.roleUsers];
+      const tmp: any[] = [...this.roleUsers];
       let rowidx = 0;
       for (let i = 0; i < tmp.length; i++) {
         if (tmp[i].id == user.id) {
@@ -512,7 +511,7 @@ export class RolemanageComponent implements OnInit {
    * @returns {any[]}
    */
   private queryChange(treenode: any[], changeData: any[]): void {
-    for (let i in treenode) {
+    for (const i in treenode) {
       if (treenode[i].data['addflg'] && treenode[i].data['checked'] == '0' && treenode.length < 40 && treenode[i].data['addflg'] == '1' ||
         (treenode[i].data['checked'] == '1' && treenode.length < 40 && treenode[i].data['addflg'] == '-1')) {
         changeData.push(treenode[i].data);

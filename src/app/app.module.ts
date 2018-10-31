@@ -99,29 +99,30 @@ import {NodeService} from './demo/service/nodeservice';
 import {ImokTestComponent} from './sungkdemo/view/imok-test/imok-test.component';
 import {TableDynamicComponent} from './sungkdemo/view/table-dynamic/table-dynamic.component';
 import {GridCrduComponent} from './sungkdemo/view/grid-crdu/grid-crdu.component';
-import {CoreModule} from "../platform/modules/core.modules";
-import {TestService} from "./sungkdemo/view/imok-test/testService";
+import {CoreModule} from '../platform/modules/core.modules';
+import {TestService} from './sungkdemo/view/imok-test/testService';
 import {MenumanageComponent} from './console/menumanage/menumanage.component';
 import {ConsoleService} from './console/service/console.service';
 import {RolemanageComponent} from './console/rolemanage/rolemanage.component';
 import {UsermanageComponent} from './console/usermanage/usermanage.component';
-import {ConsoleArraryoperService} from "./console/service/console.arraryoper.service";
+import {ConsoleArraryoperService} from './console/service/console.arraryoper.service';
 import {GrantmenutoprovComponent} from './console/grantmenutoprov/grantmenutoprov.component';
 import {TeamrolemanageComponent} from './console/teamrolemanage/teamrolemanage.component';
-import {ConsoleRoleService} from "./console/service/console.role.service";
+import {ConsoleRoleService} from './console/service/console.role.service';
 import {UnittreeComponent} from './console/common/unittree/unittree.component';
 import {SelecttreeComponent} from './console/teamauthority/selecttree/selecttree.component';
 import {TeamauthorityComponent} from './console/teamauthority/teamauthority.component';
 import {RolemanagenewComponent} from './console/rolemanagenew/rolemanagenew.component';
 import {GrantMenuToProvNewComponent} from './console/grant-menu-to-prov-new/grant-menu-to-prov-new.component';
 import {UserdialogComponent} from './console/rolemanage/dialog/userdialog/userdialog.component';
-import {MainConsoleComponent} from "./main/main-console.component";
-import {TeammenuComponent} from "./console/teammenu/teammenu.component";
-import {ProvbathComponent} from "./console/provbath/provbath.component";
+import {MainConsoleComponent} from './main/main-console.component';
+import {TeammenuComponent} from './console/teammenu/teammenu.component';
+import {ProvbathComponent} from './console/provbath/provbath.component';
 import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthoritydist.component';
 import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
-import {PasswordPipe} from "./console/teamrolemanage/PasswordPipe";
+import {PasswordPipe} from './console/teamrolemanage/PasswordPipe';
 import {Teammenu2Component} from './console/teammenu-2/teammenu-2.component';
+import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
 
 @NgModule({
   imports: [
@@ -252,6 +253,7 @@ import {Teammenu2Component} from './console/teammenu-2/teammenu-2.component';
     TeamauthoritygroupComponent,
     PasswordPipe,
     Teammenu2Component,
+    RoleUserManageComponent, // 重新做的role和user授权
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
