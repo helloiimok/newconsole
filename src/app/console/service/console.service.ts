@@ -27,6 +27,13 @@ export class ConsoleService {
 
   }
 
+  saveMenuAdmin = (data: any, successFun?: any) => {
+    debugger;
+    const baseURL = 'console/menu/saveMenuAdmin';
+    this.httpService.doPost(baseURL, data, successFun);
+
+  }
+
   /**
    * 函数名称：updateMenu
    * 功能：更新菜单
@@ -68,6 +75,32 @@ export class ConsoleService {
       newRows.push(ritem);
     }
     return newRows;
+  }
+
+  /**
+   * 查询登录账号所能查到的行政区划，基本上都是以省开始的
+   * @param data
+   * @param successFunc
+   * @param {PageInfo} pageInfo
+   */
+  queryLoginDistrict(data: any, successFunc?: any, pageInfo?: PageInfo): void {
+    debugger;
+    // 给GRID分页 传查询条件参数
+    // this.resultGrid.searchCond = this.queryParam;
+    // const singlparm = new SingleQueryParam('com.neusoft.biz.core.mapper.ConfigMapper', 'query_wjw_table', data, pageInfo);
+    const parm = new CommonQueryParam();
+    // parm.pushQueryParam('resultList', singlparm);
+
+    const singlparm1 = new SingleQueryParam(SystemSetting.mapper_UP_MENUMapper, 'selectAa11ByLogin', data, pageInfo);
+    const parm1 = new CommonQueryParam();
+    parm.pushQueryParam('resultList', singlparm1);
+
+    const errorFunc = (
+      response => {
+        this.dialogService.error(response.options.errorMsg);
+      }
+    );
+    this.httpService.doQuery(parm, successFunc, errorFunc);
   }
 
   /**
@@ -362,7 +395,7 @@ export class ConsoleService {
     const singlparm1_y = new SingleQueryParam(SystemSetting.mapper_UP_MENUMapper, 'selectMenuGfb', data, pageInfo);
 
     const parm1 = new CommonQueryParam();
-    if (this.loginService.getUnitCode() == '000000000000') {
+    if (this.loginService.getUnitCode() === '000000000000') {
       parm.pushQueryParam('resultList', singlparm1_y);
     } else {
       parm.pushQueryParam('resultList', singlparm1_x);

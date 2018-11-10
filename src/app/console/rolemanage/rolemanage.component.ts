@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TreeNode} from 'primeng/primeng';
-import {CarService} from '../../demo/service/carservice';
 import {NodeService} from '../../demo/service/nodeservice';
 import {DialogService} from '../../../platform/dialog/dialog.service';
 import {TestService} from '../../sungkdemo/view/imok-test/testService';

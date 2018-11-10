@@ -1,14 +1,65 @@
 <div class="ui-g ui-fluid">
-  <div class="ui-g-12 ui-md-6">
+  <div class="ui-g-12 ui-md-4">
     <p-panel header="待选菜单树" [toggleable]="true"
              [style]="{'margin-bottom':'10px'}">
       <p-tree [value]=this.menus selectionMode="single" [(selection)]="selectedMenus"
-              (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnSelect($event)" selectionMode="checkbox"
+              selectionMode="checkbox"
               (onNodeExpand)="nodeExpand($event)"
               [style]="{'max-height':'400px','overflow':'auto'}">
       </p-tree>
     </p-panel>
   </div>
+
+  <div class="ui-g-12 ui-md-8">
+    <div class="ui-grid-row">
+      <p-panel header="组织机构列表" [toggleable]="true" [style]="{'margin-bottom':'10px'}">
+        <p-dataTable [value]="this.districtValue" [(selection)]="selDist" dataKey="aar001" #dt
+                     [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+          <p-column [style]="&#123;'width':'38px'&#125;" selectionMode="multiple"></p-column>
+          <p-column field="aar009" header="行政区划名称" [filter]="true" filterPlaceholder=""></p-column>
+          <p-column field="aar001" header="区划编码" ></p-column>
+          <p-column field="aar033" header="区划等级" [filter]="true" filterMatchMode="in">
+            <ng-template pTemplate="filter" let-col>
+              <p-multiSelect [options]="aar033_opt" defaultLabel="选择等级"
+                             (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+                             styleClass="ui-column-filter"></p-multiSelect>
+            </ng-template>
+
+            <!--<ng-template pTemplate="filter" let-col>-->
+            <!--<p-dropdown [options]="this.aar033_opt" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>-->
+            <!--</ng-template>-->
+          </p-column>
+          <p-column field="aaa113" header="上级区划编码" [filter]="true" filterMatchMode="equals">
+            <!--<ng-template pTemplate="filter" let-col>-->
+            <!--<p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>-->
+            <!--</ng-template>-->
+          </p-column>
+          <!--<p-footer>-->
+          <!--<ul>-->
+          <!--<li *ngFor="let car of selDist" style="text-align: left">{{car.vin + ' - ' + car.brand + ' - ' + car.year + ' - ' + car.color}}</li>-->
+          <!--</ul>-->
+          <!--</p-footer>-->
+        </p-dataTable>
+      </p-panel>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-g-12" style="width:100%;margin-bottom:10px">
+        <div class="ui-g-12 ui-md-8">
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <button type="button" pButton icon="fa-save" (click)="saveMenu('add')" label="授权"></button>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <button type="button" pButton icon="fa-save" (click)="saveMenu('del')" label="撤销"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--
   <div class="ui-g-12 ui-md-6">
     <p-panel header="批量授权选项" [toggleable]="true"
              [style]="{'margin-bottom':'10px'}">
@@ -50,4 +101,5 @@
       </div>
     </p-panel>
   </div>
-</div>
+  -->
+
