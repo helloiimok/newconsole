@@ -71,7 +71,18 @@ export class TeamrolemanageComponent implements OnInit {
           new CodeName('d60', '乡级操作'),
           new CodeName('d70', '村级操作'),
         ];
-      } else {
+      }else if (user_type === 'lq') {
+        this.opts = [
+          new CodeName('', '请选择'),
+          new CodeName('l00', '国扶办'),
+          new CodeName('l20', '省级操作'),
+          new CodeName('l40', '市级操作'),
+          new CodeName('l50', '县级操作'),
+          // new CodeName('d60', '乡级操作'),
+          // new CodeName('d70', '村级操作'),
+        ];
+      }
+      else {
         this.opts = [
           new CodeName('', '请选择'),
           new CodeName('0', '组员'),

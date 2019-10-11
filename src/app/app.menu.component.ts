@@ -3,14 +3,9 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/primeng';
-import {AppComponent} from './app.component';
-import {GridCrduComponent} from './sungkdemo/view/grid-crdu/grid-crdu.component';
 import {MainConsoleComponent} from './main/main-console.component';
-import {TeammenuComponent} from './console/teammenu/teammenu.component';
 import {LoginService} from '../platform/main/login/login.service';
-import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthoritydist.component';
 import {DialogService} from '../platform/dialog/dialog.service';
-import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
 import {SystemSetting} from '../platform/system-setting/system-setting';
 
 @Component({
@@ -33,18 +28,6 @@ export class AppMenuComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    // if(this.loginService.getUserAccount().match("^99[0-9]{0}admin")){
-    //   this.model = [
-    //     {
-    //       label: '菜单管理', icon: 'fa fa-fw fa-sitemap',
-    //       items: [
-    //         {label: '菜单管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/MenumanageComponent']},
-    //         {label: '用户管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/UsermanageComponent']},
-    //         {label: '角色管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/RolemanageComponent']},
-    //         {label: '省管理控制台授权', icon: 'fa fa-fw fa-columns', routerLink: ['/main/GrantMenuToProvNewComponent']},
-    //         {label: '批量授权', icon: 'fa fa-fw fa-columns', routerLink: ['/main/ProvbathComponent']},
-    //       ];
-    // }
     if ((this.loginService.getUserAccount() === 'fpbadmin' || this.loginService.getUserAccount().indexOf('admin') >= 0)
     // && this.sys.isOldConsole
     ) {
@@ -55,9 +38,8 @@ export class AppMenuComponent implements OnInit {
               label: '菜单管理', icon: 'fa fa-fw fa-sitemap',
               items: [
                 {label: '菜单管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/MenumanageComponent']},
-                {label: '用户管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/UsermanageComponent']},
+                // {label: '用户管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/UsermanageComponent']},
                 {label: '角色管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/RolemanageComponent']},
-                {label: '省管理控制台授权', icon: 'fa fa-fw fa-columns', routerLink: ['/main/GrantMenuToProvNewComponent']},
                 {label: '批量授权', icon: 'fa fa-fw fa-columns', routerLink: ['/main/ProvbathComponent']},
               ]
             },
@@ -183,6 +165,50 @@ export class AppMenuComponent implements OnInit {
           ];
 
         }
+        // 革命老区菜单
+        if (this.loginService.getUserAccount() === 'lq_fpbadmin') {
+
+          this.model = [
+            {label: '菜单管理', icon: 'fa fa-fw fa-columns', routerLink: ['/main/MenumanageComponent']},
+            {
+              label: '用户角色管理',
+              icon: 'fa fa-fw fa-columns',
+              routerLink: ['/main/TeamrolemanageComponent', '{"type":"lq"}']
+            },
+            {
+              label: '国扶办角色授权菜单', icon: 'fa fa-fw fa-columns',
+              routerLink: ['/main/Teammenu2Component', '{"level":"l00"}'],
+            },
+            // {
+            //   label: '编辑公司角色授权菜单', icon: 'fa fa-fw fa-columns',
+            //   routerLink: ['/main/Teammenu2Component', '{"level":"d10"}'],
+            // },
+            {
+              label: '省角色授权菜单', icon: 'fa fa-fw fa-columns',
+              routerLink: ['/main/Teammenu2Component', '{"level":"l20"}'],
+            },
+            {
+              label: '市角色授权菜单', icon: 'fa fa-fw fa-columns',
+              routerLink: ['/main/Teammenu2Component', '{"level":"l40"}'],
+            },
+            {
+              label: '县角色授权菜单', icon: 'fa fa-fw fa-columns',
+              routerLink: ['/main/Teammenu2Component', '{"level":"l50"}'],
+            },
+            // {
+            //   label: '乡角色授权菜单', icon: 'fa fa-fw fa-columns',
+            //   routerLink: ['/main/Teammenu2Component', '{"level":"d60"}'],
+            // },
+            // {
+            //   label: '村角色授权菜单', icon: 'fa fa-fw fa-columns',
+            //   routerLink: ['/main/Teammenu2Component', '{"level":"d70"}'],
+            // }
+          ];
+
+        }
+
+
+
         // 省控制台
         if (this.loginService.getUserAccount().match('^[0-9]{2}admin') && this.loginService.getUserAccount() != '99admin') {
           debugger;

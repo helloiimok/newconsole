@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {TreeNode} from "primeng/primeng";
-import {ConsoleRoleService} from "../service/console.role.service";
-import {ConsoleArraryoperService} from "../service/console.arraryoper.service";
-import {DialogService} from "../../../platform/dialog/dialog.service";
-import {ConsoleService} from "../service/console.service";
-import {LoginService} from "../../../platform/main/login/login.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {TreeNode} from 'primeng/primeng';
+import {ConsoleRoleService} from '../service/console.role.service';
+import {ConsoleArraryoperService} from '../service/console.arraryoper.service';
+import {DialogService} from '../../../platform/dialog/dialog.service';
+import {ConsoleService} from '../service/console.service';
+import {LoginService} from '../../../platform/main/login/login.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-teammenu-2',
@@ -29,7 +29,7 @@ export class Teammenu2Component implements OnInit {
               private dialogService: DialogService,
               private nodeService: ConsoleArraryoperService,
               private consoleArraryoperService: ConsoleArraryoperService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute, ) {
   }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class Teammenu2Component implements OnInit {
     this.changeArray = [];
     this.route.params.subscribe((params: ParamMap) => {
 
-      debugger;
+      // debugger;
       const parm = params['menuParam'];
       const o_parm = JSON.parse(parm);
       // const level = o_parm.level;
@@ -52,6 +52,12 @@ export class Teammenu2Component implements OnInit {
       //  d50 ---县级别
       //  d60 ---乡级别
       //  d70 ---村级别
+      // 革命老区的级别设置
+      //  l00 ---属于国扶办级别
+      //  l20 ---省级别
+      //  l40 ---市级别
+      //  l50 ---县级别
+
       // this.dialogService.info(level.toString());
       let role_id: string;
       if (this.level === 'd00') {
@@ -75,6 +81,18 @@ export class Teammenu2Component implements OnInit {
       if (this.level === 'd70') {
         role_id = 'dd_group_cun';
       }
+      // 革命老区的角色设置
+      if (this.level === 'l00') {
+        role_id = 'lq_group_gfb';
+      }
+
+      if (this.level === 'l20') {
+        role_id = 'lq_group_sheng';
+      }
+      if (this.level === 'l40') {
+        role_id = 'lq_group_shi';
+      }
+      //
       this.role_id = role_id;
       this.initMenu(role_id);
     });
@@ -90,7 +108,7 @@ export class Teammenu2Component implements OnInit {
     const successFunc: any = (
       response => {
         // 成功回调
-        debugger;
+        // debugger;
         let res = response.body.resultList.data;
         res = this.conService.transToLowerKeyArray(res);
         this.teams = res;
@@ -101,11 +119,11 @@ export class Teammenu2Component implements OnInit {
   }
 
   queryBusiRole = (unitid: string) => {
-    let successFunc: any = (response => {
-      debugger;
+    const successFunc: any = (response => {
+      // debugger;
       // 每次刷新树节点，初始化this.changeArray
       this.changeArray = [];
-      let res = response.body.resultList.data;
+      const res = response.body.resultList.data;
     });
 
     this.conService.queryBusiRoleByUnitID({unit_id: unitid}, successFunc);
@@ -172,7 +190,7 @@ export class Teammenu2Component implements OnInit {
   }
 
   onRowSelect = ($event) => {
-    debugger;
+    // debugger;
     const item = $event.data;
     this.selectedMenus = [];
     this.changeArray = [];
@@ -184,12 +202,12 @@ export class Teammenu2Component implements OnInit {
   }
 
   nodeSelect = (event) => {
-    debugger;
+    // debugger;
     const item = event.node.data;
-    let changeData: any[] = [];
+    const changeData: any[] = [];
     this.consoleArraryoperService.queryTreeNode(event.node, changeData, 'add');
-    for (let i in changeData) {
-      let ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
+    for (const i in changeData) {
+      const ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
       if (ind >= 0) {
         this.changeArray.splice(ind, 1);
         changeData[i]['addflg'] = '1';
@@ -201,12 +219,12 @@ export class Teammenu2Component implements OnInit {
   }
 
   nodeUnSelect = (event) => {
-    debugger;
+    // debugger;
     const item = event.node.data;
-    let changeData: any[] = [];
+    const changeData: any[] = [];
     this.consoleArraryoperService.queryTreeNode(event.node, changeData, 'del');
-    for (let i in changeData) {
-      let ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
+    for (const i in changeData) {
+      const ind: number = this.consoleArraryoperService.findByID(this.changeArray, changeData[i].id);
       if (ind >= 0) {
         this.changeArray.splice(ind, 1);
         changeData[i]['addflg'] = '-1';
@@ -218,7 +236,7 @@ export class Teammenu2Component implements OnInit {
   }
 
   saveMenu = () => {
-    debugger;
+    // debugger;
     const data = {
       options: {opt: 'modifydata'},
       changeData: this.changeArray,
@@ -226,7 +244,7 @@ export class Teammenu2Component implements OnInit {
       prm_role_type: 'busiRole',
     };
     const successFunc = (response => {
-      debugger;
+      // debugger;
       if (response.error) {
         const list = response.error;
         this.dialogService.info(list.detail);
@@ -238,7 +256,7 @@ export class Teammenu2Component implements OnInit {
       }
       // 保存成功后也需要初始化this.changeArray = [];
       this.changeArray = [];
-      let res = response.resultList;
+      const res = response.resultList;
       // this.busiRoles = this.conService.transToLowerKeyArray(res);
       this.dialogService.success('保存成功');
       // this.displayDialog = false;
