@@ -19,7 +19,7 @@ export class LoginService {
   private loginInfo: UserInfo;
   private resetPasswordURL = 'security/resetPassword';
   private changePasswordURL = 'security/changePassword';
-  private isDefPwd: boolean = false;
+  private isDefPwd = false;
 
   constructor(private httpService: HttpService,
               private dialogService: DialogService,
@@ -138,7 +138,7 @@ export class LoginService {
         this.router.navigate(['/']);
       }
     );
-    let param = new CustomParam();
+    const param = new CustomParam();
     param.options = {OPT: 'logout'};
     this.httpService.doPost('security/logout', param, successFunc, true);
   }
@@ -152,7 +152,7 @@ export class LoginService {
   }
 
   resetPassword(account: string, successFunc: any): void {
-    let data = {
+    const data = {
       options: {opt: 'resetPassword'},
       account: this.encrypt(account)
     };
@@ -161,7 +161,7 @@ export class LoginService {
   }
 
   changePassword(account: string, password: string, newPassword: string, successFunc: any): void {
-    let data = {
+    const data = {
       options: {opt: 'updatePassword'},
       account: this.encrypt(account),
       password: this.encrypt(password),

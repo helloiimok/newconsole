@@ -68,9 +68,9 @@ export class SystemSetting {
   public DIVISION_VIEW_MODE_PROJECT_IMPLEMENT = '12';
   // 开发环境
 
-  // public static baseURL = 'http://localhost:8080/cpad_new/api';
+  public static baseURL = 'http://localhost:8080/cpad_khpgs/api';
 
-  public static baseURL = 'http://localhost:8088/cpad_khpgs/api';
+  // public static baseURL = 'http://localhost:8088/cpad_khpgs/api';
 
   public isDebug = false;
 

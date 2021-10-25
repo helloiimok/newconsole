@@ -22,19 +22,19 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   overlayMenuActive = true;
   staticMenuDesktopInactive = false;
   staticMenuMobileActive = false;
-  topbarItemsVisible=false;
+  topbarItemsVisible= false;
 
   _height: string;
 
   menuData: MenuData;
 
-  keyWords: string = '';
+  keyWords = '';
 
   menuModels: MenuItem[];
 
   @ViewChild(NuiBizTabViewComponent) tabView: NuiBizTabViewComponent;
   @ViewChild(ChangePasswordComponent) changePasswordComponent: ChangePasswordComponent;
-  activeTabIndex: number = 0;
+  activeTabIndex = 0;
 
   constructor(
     private loginService: LoginService,
@@ -56,7 +56,7 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    let heightNum = document.documentElement.clientHeight -65-10;
+    const heightNum = document.documentElement.clientHeight - 65 - 10;
     this._height = "" + heightNum + "px";
     window.onresize = (() =>
       {
@@ -102,17 +102,17 @@ export class MainComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   openTab(selectedMenu: NuiMenuNode){
-    let isOpened = this.menuService.isOpened(selectedMenu);
-    if(isOpened) {
+    const isOpened = this.menuService.isOpened(selectedMenu);
+    if (isOpened) {
       this.tabView.updatePanelStatus(this.menuData.tabs);
       // console.log("==该菜单已打开。菜单：" + selectedMenu.label + "(ID:" + selectedMenu.id + ")" + " ;Component=" + selectedMenu.component);
     } else {
       // 打开新的Tab页
       // 查询当前菜单对应的组件信息
       // let component: any = this.getComponentTypeByName(selectedMenu.component);
-      let component: any = selectedMenu.component;
-      if(component != null){
-        for(let item of this.menuData.tabs){
+      const component: any = selectedMenu.component;
+      if (component != null){
+        for (const item of this.menuData.tabs){
           item.selected = false;
         }
 

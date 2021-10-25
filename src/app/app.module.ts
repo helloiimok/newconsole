@@ -122,7 +122,7 @@ import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthor
 import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
 import {PasswordPipe} from './console/teamrolemanage/PasswordPipe';
 import {Teammenu2Component} from './console/teammenu-2/teammenu-2.component';
-import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
+// import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
 
 @NgModule({
   imports: [
@@ -253,7 +253,7 @@ import {RoleUserManageComponent} from './console/role-user-manage/role.user.mana
     TeamauthoritygroupComponent,
     PasswordPipe,
     Teammenu2Component,
-    RoleUserManageComponent, // 重新做的role和user授权
+    // RoleUserManageComponent, // 重新做的role和user授权
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

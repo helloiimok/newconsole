@@ -15,7 +15,7 @@ declare var window: any;
 @Component({
   selector: 'nui-biz-tabView',
   template: `
-        
+
     <p-tabView [id]="id" class="ui-tabview-panels"  fxFlexFill (onChange)="onChangeExd($event)" [controlClose]="true" (onClose)="onCloseExd($event)">
       <p-tabPanel *ngFor="let tab of tabs"
         header="{{tab.label}}" [selected]="tab.selected" [closable]="tab.closable"
@@ -52,7 +52,7 @@ export class NuiBizTabViewComponent implements OnChanges, AfterViewInit{
 
   onChangeExd($event) {
     this.menuService.setCurrentTab(null, $event.index);
-    if(this.onChange){
+    if (this.onChange){
       this.onChange.emit($event);
     }
   }
@@ -64,10 +64,11 @@ export class NuiBizTabViewComponent implements OnChanges, AfterViewInit{
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName == 'tabs') {
-        if(this.pTabView && this.pTabView.tabs){
-          for(let index in this.tabs){
+        if (this.pTabView && this.pTabView.tabs){
+          // tslint:disable-next-line:forin
+          for (const index in this.tabs){
             this.pTabView.tabs[index].selected = this.tabs[index].selected;
           }
         }
@@ -81,7 +82,7 @@ export class NuiBizTabViewComponent implements OnChanges, AfterViewInit{
   }
 
   resize(){
-    let heightNum = document.documentElement.clientHeight -65-38;
+    const heightNum = document.documentElement.clientHeight - 65 - 38;
    // let widthNum = document.documentElement.clientWidth-250-4;
     this._height = "" + heightNum + "px";
    // this._width = "" + widthNum + "px";
@@ -89,8 +90,9 @@ export class NuiBizTabViewComponent implements OnChanges, AfterViewInit{
   }
 
   updatePanelStatus(tabItems: TabItem[]){
-    if(tabItems){
-      for(let index in tabItems){
+    if (tabItems){
+      // tslint:disable-next-line:forin
+      for (const index in tabItems){
         this.pTabView.tabs[index].selected = tabItems[index].selected;
       }
     }

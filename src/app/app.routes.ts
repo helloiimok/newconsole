@@ -19,7 +19,7 @@ import {TeamauthoritydistComponent} from './console/teamauthoritydist/teamauthor
 import {TeamauthoritygroupComponent} from './console/teamauthoritygroup/teamauthoritygroup.component';
 import {Teammenu2Component} from './console/teammenu-2/teammenu-2.component';
 import {SmartbiComponent} from '../platform/main/smartbi/smartbi.component';
-import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
+// import {RoleUserManageComponent} from './console/role-user-manage/role.user.manage.component';
 
 
 export const routes: Routes = [
@@ -47,6 +47,7 @@ export const routes: Routes = [
       {path: 'imokTest', component: ImokTestComponent},
       {path: 'table_dynamic_column', component: TableDynamicComponent},
       {path: 'GridCrduComponent', component: GridCrduComponent},
+      // tslint:disable-next-line:comment-format
       //console
       {path: 'MenumanageComponent', component: MenumanageComponent},
       {path: 'RolemanageComponent', component: RolemanageComponent},
@@ -60,7 +61,7 @@ export const routes: Routes = [
       {path: 'TeamauthoritydistComponent', component: TeamauthoritydistComponent},
       {path: 'TeamauthoritygroupComponent', component: TeamauthoritygroupComponent},
       {path: 'Teammenu2Component/:menuParam', component: Teammenu2Component},
-      {path: 'RoleUserManageComponent', component: RoleUserManageComponent},
+      // {path: 'RoleUserManageComponent', component: RoleUserManageComponent},
 
       // 20180720 jins 新控制台集成SmartBI
       {path: 'smartbi/:param', component: SmartbiComponent},
